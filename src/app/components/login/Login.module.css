@@ -1,0 +1,88 @@
+.login {
+    display: flex;
+    flex-direction: column;
+    margin: 10px;
+    padding: 10px;
+    background-color: #f1f1f8;
+    max-width: 500px;
+}
+.loginTitle{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.loginTitle h1{
+    font-weight: 900;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+.inputContainer {
+    display: flex;
+    flex-direction: column;
+    margin: 10px;
+}
+
+.inputContainer label {
+    font-weight: 600;
+    font-size: 22px;
+    line-height: 14px;
+    margin: 10px;
+}
+
+.inputContainer input {
+    margin: 5px;
+    padding: 10px;
+    height: 50px;
+    max-width: 450px;
+    width: 100%;
+    font-size: 32px;
+    border: 1px solid #d1d1e0;
+    border-radius: 10px;
+}
+
+.inputContainer .error {
+    color: #f10b0b;
+    font-size: 15px;
+}
+
+.inputContainer .inputError {
+    border: 2px solid #f10b0b;
+}
+
+.submitContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    max-width: 450px;
+}
+
+.submitContainer button {
+    margin: 10px;
+    padding: 10px;
+    height: 50px;
+    max-width: 200px;
+    font-size: 24px;
+    font-weight: 600;
+    width: 100%;
+    border: 1px solid #d1d1e0;
+    background-color: #b3b3cc;
+    color: #fff;
+}
+.submitContainer button:hover{
+    background-color: #9999c4;
+}
+
+.loading {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    max-width: 450px;
+}
+
+.loginFooter {
+    display: flex;
+    justify-content: space-between;
+    max-width: 450px;
+    margin: 10px;
+    padding: 10px;
+}

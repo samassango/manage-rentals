@@ -1,0 +1,29 @@
+.container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    align-content: center;
+    min-height: 100svh;
+
+}
+
+.flexItem {
+    flex: 1;
+    padding: 20px;
+}
+
+.flexItem:first-child {
+    text-align: center;
+    font-weight: 900;
+    font-size: large;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+@media screen and (max-width: 790px) {
+    .container {
+        flex-direction: column;
+    }
+    .flexItem:first-child {
+        margin-top: 100px;
+    }
+}
