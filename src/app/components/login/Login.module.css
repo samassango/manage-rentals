@@ -3,8 +3,9 @@
     flex-direction: column;
     margin: 10px;
     padding: 10px;
-    background-color: #f1f1f8;
+    background-color: rgba(240, 240, 240,0.2);
     max-width: 500px;
+    border-radius: 5px;
 }
 .loginTitle{
     display: flex;
@@ -32,12 +33,12 @@
 .inputContainer input {
     margin: 5px;
     padding: 10px;
-    height: 50px;
+    height: 40px;
     max-width: 450px;
     width: 100%;
-    font-size: 32px;
+    font-size: 25px;
     border: 1px solid #d1d1e0;
-    border-radius: 10px;
+    border-radius: 5px;
 }
 
 .inputContainer .error {
@@ -67,6 +68,7 @@
     border: 1px solid #d1d1e0;
     background-color: #b3b3cc;
     color: #fff;
+    border-radius: 5px;
 }
 .submitContainer button:hover{
     background-color: #9999c4;

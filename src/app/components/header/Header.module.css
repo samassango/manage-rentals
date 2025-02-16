@@ -1,0 +1,238 @@
+.header {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    height: 100%;
+    border: 2px solid wheat;
+}
+
+.headerItem {
+    display: flex;
+    padding: .5rem;
+    align-items: center;
+}
+
+.headerItem:first-child {
+    width: 20%;
+    justify-content: center;
+}
+
+.headerItem:first-child svg {
+    width: 3rem;
+    height: 3rem;
+}
+
+.headerItem:first-child h1 {
+    margin-top: .5rem;
+    margin-left: .5rem;
+    font-size: 2rem;
+}
+
+.headerItem:nth-child(2) {
+    width: 20%;
+}
+
+.headerItem:last-child {
+    width: 60%;
+    justify-content: flex-end;
+}
+
+.menuButton {
+    width: 4rem;
+    height: 100%;
+    border: 1px solid rgba(224, 137, 55, 0.8);
+    background-color: rgba(73, 69, 69, 0.8);
+    padding: 0 5px;
+    outline: none;
+    cursor: pointer;
+    margin: 0 .5rem;
+}
+
+.menuButton:hover {
+    background-color: rgba(100, 99, 99, 0.9);
+}
+
+.menuButton .line {
+    height: .3rem;
+    background-color: rgb(243, 232, 232);
+    width: 100%;
+    margin: 8px 0;
+    padding-top: 1px;
+}
+
+.menuButton:hover .line:nth-child(2) {
+    width: 80%;
+    margin: 8px 5px;
+}
+
+.searchContainer {
+    display: flex;
+    height: 2.5rem;
+    margin: 10px 5px;
+    border: 1px solid orange;
+    border-radius: .4rem;
+    padding: 5px;
+}
+
+.searchContainer .searchInput {
+    height: 100%;
+    width: 100%;
+    font-size: 1rem;
+    border: none;
+    padding: 5px;
+}
+
+.searchContainer .searchButton {
+    background: transparent;
+    border: none;
+    margin: .3rem .6rem;
+}
+
+.searchContainer .searchButton svg {
+    width: 1rem;
+    height: 1rem;
+}
+
+.profile {
+    display: flex;
+    padding: 1rem;
+}
+
+.profile .profileImg {
+    margin: 0 .5rem;
+}
+
+.profile .profileImg svg {
+    width: 1rem;
+    height: 1rem;
+}
+
+.notification {
+    padding: .8rem;
+    margin: 0rem .5rem;
+}
+
+.notification svg {
+    width: 1.5rem;
+    height: 1.5rem;
+}
+
+.notification a {}
+
+.logoutButton {
+    padding: 1rem;
+    margin: 0 .5rem;
+    border: 1px solid orange;
+    outline: none;
+    border-radius: .4rem;
+    cursor: pointer;
+    background: rgba(59, 57, 57, 0.9);
+}
+
+.logoutButton:hover {
+    background-color: rgba(100, 99, 99, 0.9);
+}
+
+.logoutButton svg {
+    width: 1rem;
+    height: 1rem;
+}
+
+.logoutButton span {
+    margin: 0 .5rem;
+    font-size: 1rem;
+    padding: .1rem;
+}
+
+@media only screen and (max-width: 1290px) {
+    .menuButton {
+        width: 4rem;
+    }
+
+    .headerItem:first-child h1 {
+        font-size: 1.5rem;
+    }
+
+    .headerItem:nth-child(2) {
+        width: 35%;
+    }
+
+}
+
+@media only screen and (max-width: 1060px) {
+    .headerItem:first-child h1 {
+        font-size: 1.3rem;
+    }
+}
+
+@media only screen and (max-width: 940px) {
+    .headerItem:first-child h1 {
+        font-size: 1.1rem;
+    }
+
+    .logoutButton {
+        padding: .6rem;
+    }
+
+    .logoutButton span {
+        font-size: .8rem;
+    }
+
+}
+
+@media only screen and (max-width: 790px) {
+    .menuButton {
+        width: 6rem;
+    }
+
+    .headerItem:first-child {
+        flex-direction: column;
+    }
+
+    .headerItem:first-child svg {
+        width: 2rem;
+        height: 2rem;
+    }
+
+}
+
+@media only screen and (max-width: 620px) {
+    .headerItem:first-child {
+        width: 10%;
+    }
+
+    .headerItem:first-child h1 {
+        display: none;
+    }
+
+    .menuButton {
+        width: 8rem;
+    }
+}
+
+@media only screen and (max-width: 550px) {
+    .menuButton {
+        display: none;
+        height: none;
+    }
+
+    .headerItem:first-child {
+        margin-left: .4rem;
+    }
+
+    .profile .profileName {
+        display: none;
+    }
+
+    .logoutButton span {
+        display: none;
+    }
+
+    .logoutButton {
+        padding: .5rem;
+    }
+
+    .searchContainer {
+        display: none;
+    }
+}

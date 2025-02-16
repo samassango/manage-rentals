@@ -1,35 +1,45 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import PropTypes from 'prop-types'
-
 import styles from './Login.module.css'
 import Loader from '../Loader';
+import { validateEmail } from '@/app/utils/validateInputs';
+import { useCurrentUser } from '@/app/context/UserContext';
 
 export interface IUser {
     username: string;
     password: string;
     rememberMe: boolean;
 }
+
 interface IForm {
-    onSubmitHandler: (data: IUser) => void
+    onSubmitHandler: (data: IUser) => Promise<any>
 }
 
-const validateEmail = (email: string) => {
-    const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-    return emailPattern.test(email);
-}
 
 export default function Login({ onSubmitHandler }: IForm) {
     const [form, setForm] = useState({ username: '', password: '', rememberMe: false })
     const [error, setError] = useState({ usernameError: '', passwordError: '' })
     const [isloading, setIsLoading] = useState(false)
+    const [loginResult, setLoginResult] = useState(null)
 
+    const { onSuccessHandler, user, currentUser } = useCurrentUser();
+
+    useEffect(() => {
+        if (loginResult) {
+            onSuccessHandler(loginResult)
+        }
+    }, [loginResult])
 
     const signInHandler = (evt: any) => {
         evt.preventDefault();
         setIsLoading(true);
         if (validateForm()) {
-            onSubmitHandler(form);
+            onSubmitHandler(form).then(response => {
+                console.log({response})
+                setLoginResult(response)
+            })
             setIsLoading(false);
+
         }
     }
     const validateForm = () => {

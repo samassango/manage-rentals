@@ -1,0 +1,52 @@
+.container {
+   display: flex;
+   flex-direction: column;
+   height: 100vh;
+   width: 100%;
+}
+
+.header {
+    display: flex;
+}
+
+.content {
+  display: flex;
+  width: 100%;
+}
+
+.sideBarContainer {
+  width: 20%;
+  height: 90vh;
+  background-color: #4e4b4b;
+}
+
+.mainContainer{
+    width: 80%;
+    border: 1px solid orangered;
+}
+
+@media only screen and (max-width: 620px ) {
+  .sideBarContainer {
+    width: 10%;
+  }
+  .mainContainer{
+    width: 90%;
+  }
+}
+
+@media only screen and (max-width: 550px) {
+  .content {
+    flex-direction: column;
+  }
+  .header{
+    height: 10vh;
+  }
+  .sideBarContainer {
+    width: 100%;
+    height: 13vh;
+  }
+  .mainContainer{
+    width: 100%;
+    height: 100vh;
+  }
+}
