@@ -14,7 +14,6 @@ export default function Greeting() {
         }
 
     }, [currentUser])
-    console.log({currentUser, user})
   return (
     <div className={styles.header}>Hi.<span>{name}</span></div>
   );

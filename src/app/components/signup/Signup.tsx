@@ -1,4 +1,4 @@
-import styles from '../login/Login.module.css'
+import styles from './Signup.module.css'
 import React, { useState } from 'react'
 import PropTypes from 'prop-types'
 import Loader from '../Loader';
@@ -170,9 +170,9 @@ export default function Signup({ onSubmitHandler }: IForm) {
                 }
             </div>
             <div className={styles.submitContainer}>
-                <button onClick={signUpHandler}>Sign Up</button>
+            <a href='/login'>Back to Login</a> <button onClick={signUpHandler}>Sign Up</button>
             </div>
-
+          
         </div>
     );
 }

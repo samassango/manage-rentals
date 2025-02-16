@@ -4,7 +4,6 @@
     align-items: center;
     align-content: center;
     min-height: 100svh;
-
 }
 
 .flexItem {
@@ -15,11 +14,17 @@
 .flexItem:first-child {
     display: flex;
     flex-direction: column;
+    justify-content: center;
     gap: 15px;
     text-align: center;
     font-weight: 900;
     font-size: large;
     font-family: 'Courier New', Courier, monospace;
+    /* background: #3232ce84; */
+    background: rgba(43, 43, 46, 0.764);
+    background: linear-gradient(90deg, rgb(35, 35, 37) 0%, rgba(12,12,222,1) 54%, rgb(99, 104, 104) 100%);
+    height: 100vh;
+    border-radius: 0 100% 50% 0px;
 }
 
 .flexItem:first-child a{
@@ -38,6 +43,11 @@
 
 .flexItem:first-child  a:hover{
     background-color: #9999c4;
+}
+
+.flexItem:last-child{
+    display: flex;
+    justify-content: center;
 }
 
 @media screen and (max-width: 790px) {

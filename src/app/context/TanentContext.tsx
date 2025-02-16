@@ -26,29 +26,29 @@ export const TanentProvider = ({ children }: any) => {
     const { currentUser, user } = useCurrentUser()
 
     const onSuccessHandler = (tanents: ITenantDetails[]) => {
-        console.log("onSuccess", tanents)
         setTanents(tanents)
     }
 
     useEffect(() => {
-        const token = user?.token || '';
-        if (currentUser.id) {
-            getTanentByOwnerId(currentUser.id, token).then(tanent => {
-                console.log({ tanent })
-                if (tanent.length) {
-                    setCurrentTanent(tanent[0])
-                    setTanents(tanent)
-                } else {
-                    getTanentByUserId(currentUser.id, token).then((userTanent => {
-                        if (userTanent.length) {
-                            setCurrentTanent(userTanent[0])
-                            setTanents(userTanent)
-                        }
-                    }))
-                }
-            })
+        if(!currentTanent){
+            const token = user?.token || '';
+            if (currentUser && currentUser.id) {
+                getTanentByOwnerId(currentUser.id, token).then(tanent => {
+                    console.log({ tanent })
+                    if (tanent.length) {
+                        setCurrentTanent(tanent[0])
+                        setTanents(tanent)
+                    } else {
+                        getTanentByUserId(currentUser.id, token).then((userTanent => {
+                            if (userTanent.length) {
+                                setCurrentTanent(userTanent[0])
+                                setTanents(userTanent)
+                            }
+                        }))
+                    }
+                })
+            }
         }
-
     }, [])
 
     // useEffect(() => {

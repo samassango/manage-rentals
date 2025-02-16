@@ -26,21 +26,28 @@ export const UserProvider = ({ children }: any) => {
     }
 
     useEffect(() => {
-        if (user) {
-            const { token } = user;
-            getCurrentUser(token).then((userData) => {
-                console.log({ userData })
-                if (userData.id) {
-                    setCurrentUser(userData)
-                    redirectPage('/tenant')
-                }else{
-                    redirectPage('/login')
+        if (currentUser==null){
+            if (user) {
+                const { token } = user;
+                if (token) {
+                    getCurrentUser(token).then((userData) => {
+                        console.log({ userData })
+                        if (userData.id) {
+                            setCurrentUser(userData)
+                            redirectPage('/tenant')
+                        } else {
+                            redirectPage('/login')
+                        }
+
+                    })
                 }
-
-            })
+            } else {
+                redirectPage('/login')
+            }
         }
+            
     }, [user])
-
+    // console.log({ user, currentUser })
     return (
         <UserContext.Provider value={{ user, onSuccessHandler, currentUser }}>
             {children}

@@ -22,7 +22,11 @@ export default function CreateTenant({ onCreateTenant }: ITenant) {
     tenantOwnerId: currentUser.id,
     createdAt: new Date()
   })
-
+  useEffect(() => {
+    if (!currentTanent && tanents.length > 0) {
+      changeTanent(currentUser.id)
+    }
+  }, [])
   useEffect(() => {
     changeTanent(currentUser.id)
   }, [currentUser])
@@ -35,6 +39,7 @@ export default function CreateTenant({ onCreateTenant }: ITenant) {
 
   useEffect(() => {
     if (currentTanent) {
+      console.log("useEffect is here")
       router.push('/tenant/tenant-admin')
       //redirectPage('/tenant/tenant-admin')
     }

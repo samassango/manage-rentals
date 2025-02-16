@@ -3,8 +3,8 @@
     flex-direction: column;
     margin: 10px;
     padding: 10px;
-    background-color: rgba(240, 240, 240,0.2);
-    max-width: 500px;
+    background-color: rgba(240, 240, 240, 0.2);
+    max-width: 450px;
     border-radius: 5px;
 }
 .loginTitle{
@@ -25,13 +25,12 @@
 
 .inputContainer label {
     font-weight: 600;
-    font-size: 22px;
+    font-size: 20px;
     line-height: 14px;
     margin: 10px 0;
 }
 
 .inputContainer input {
-    margin: 5px;
     padding: 10px;
     height: 40px;
     max-width: 450px;
@@ -53,16 +52,23 @@
 
 .submitContainer {
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
-    max-width: 450px;
+   
+}
+
+.submitContainer a{
+    padding: 10px;
+    cursor: pointer;
+    font-weight: 600;
+    line-height: 14px;
 }
 
 .submitContainer button {
     margin: 10px;
     padding: 10px;
     height: 50px;
-    max-width: 200px;
+    max-width: 150px;
     font-size: 24px;
     font-weight: 600;
     width: 100%;
@@ -70,9 +76,10 @@
     background-color: #b3b3cc;
     color: #fff;
     border-radius: 5px;
+    cursor: pointer;
 }
 .submitContainer button:hover{
-    background-color: #9999c4;
+    background-color: rgba(100, 99, 99, 0.9);
 }
 
 .loading {
@@ -88,8 +95,4 @@
     max-width: 450px;
     margin: 10px;
     padding: 10px;
-}
-
-.rememberMe input{
-    margin-right: .5rem;
 }
