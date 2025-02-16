@@ -1,0 +1,46 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    width: 30rem;
+    padding: 10px;
+    border: .2rem solid rgb(181, 179, 179);
+    background-color: rgb(255, 255, 255);
+}
+
+.inputContainer{
+    flex: 1;
+    margin-top: 10px;
+}
+
+.inputContainer label {
+    width: 100%;
+    font-size: 1rem;
+    font-weight: 700;
+    color: rgb(102, 99, 99);
+}
+
+.inputContainer input {
+    width: 100%;
+    height: 3rem;
+    font-size: 1rem;
+    border: .2rem solid gray;
+    padding: .5rem;
+    border-radius: .5rem;
+}
+.buttonContainer{
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+}
+.buttonContainer button{
+    font-size: 1rem;
+    font-weight: 600;
+    width: 10rem;
+    height: 3rem;
+    border-radius: 1rem;
+    background-color: gray;
+}
+
+.buttonContainer button:hover{
+    background-color: rgb(158, 144, 144);
+}

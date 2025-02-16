@@ -1,0 +1,39 @@
+.container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    align-content: center;
+    min-height: 100svh;
+
+}
+
+.flexItem {
+    flex: 1;
+    padding: 20px;
+}
+
+.flexItem:first-child {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    text-align: center;
+    font-weight: 900;
+    font-size: large;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+.flexItem:first-child p {
+    font-weight: 100;
+    font-size: 15px;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
+@media screen and (max-width: 790px) {
+    .container {
+        flex-direction: column;
+    }
+
+    .flexItem:first-child {
+        margin-top: 100px;
+    }
+}
