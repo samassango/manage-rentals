@@ -1,10 +1,34 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import styles from './Header.module.css'
 import { SiConstruct3 } from 'react-icons/si';
 import { FaSearch, FaUser } from 'react-icons/fa';
 import { IoNotifications } from 'react-icons/io5';
 import { LuLogOut } from 'react-icons/lu';
-export default function Header() {
+interface IHeader {
+    openUserProfile: () => void;
+    openNotification: () => void;
+    onMenuHandler: (isOpen: boolean) => void;
+    onMenuOpen: boolean;
+}
+export default function Header({ openUserProfile, openNotification, onMenuHandler, onMenuOpen }: IHeader) {
+    const [menuIsOpen, setMenuIsOpen] = useState(false)
+
+    useEffect(()=>{
+        setMenuIsOpen(onMenuOpen)
+    },[onMenuOpen])
+
+    const onMenuChange = (evt:any) => {
+        evt.preventDefault();
+        onMenuHandler(menuIsOpen);
+    }
+    const OnViewUserProfile =(evt:any)=>{
+        evt.preventDefault();
+        openUserProfile()
+    }
+    const onViewNotification =(evt: any)=>{
+        evt.preventDefault();
+        openNotification()
+    }
     return (
         <div className={styles.header}>
             <div className={styles.headerItem}>
@@ -12,7 +36,7 @@ export default function Header() {
                 <h1>ConstruTech</h1>
             </div>
             <div className={styles.headerItem}>
-                <button className={styles.menuButton}>
+                <button className={styles.menuButton} onClick={onMenuChange}>
                     <div className={styles.line}></div>
                     <div className={styles.line}></div>
                     <div className={styles.line}></div>
@@ -25,11 +49,11 @@ export default function Header() {
             <div className={styles.headerItem}>
                 <div className={styles.profile}>
                     <div className={styles.profileImg}>
-                        <a href='#'><FaUser /></a>
+                        <button className={styles.iconButtons} onClick={OnViewUserProfile}><FaUser /></button>
                     </div>
                     <label htmlFor='profileName' className={styles.profileName}>Sibusiso Massango</label>
                 </div>
-                <div className={styles.notification}><a href='#'><IoNotifications /></a></div>
+                <div className={styles.notification}><button className={styles.iconButtons} onClick={onViewNotification}><IoNotifications /></button></div>
                 <button className={styles.logoutButton}><LuLogOut /><span>Logout</span></button>
             </div>
         </div>

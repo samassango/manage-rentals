@@ -18,8 +18,6 @@ export default function Tenant() {
             <div className={styles.container}>
                 <Greeting />
                 <TanentProvider>
-                    <h1>Search Tanent</h1>
-                    <SearchTanent />
                     <h1>Create Tanent</h1>
                     <CreateTenant onCreateTenant={onCreateTenant} />
                 </TanentProvider>

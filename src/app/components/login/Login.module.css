@@ -67,12 +67,12 @@
     font-weight: 600;
     width: 100%;
     border: 1px solid #d1d1e0;
-    background-color: #b3b3cc;
+    background-color: rgba(59, 57, 57, 0.9);;
     color: #fff;
     border-radius: 5px;
 }
 .submitContainer button:hover{
-    background-color: #9999c4;
+    background-color: rgba(100, 99, 99, 0.9);
 }
 
 .loading {

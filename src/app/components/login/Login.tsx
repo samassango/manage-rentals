@@ -4,6 +4,7 @@ import styles from './Login.module.css'
 import Loader from '../Loader';
 import { validateEmail } from '@/app/utils/validateInputs';
 import { useCurrentUser } from '@/app/context/UserContext';
+import { redirectPage } from '@/app/actions/login';
 
 export interface IUser {
     username: string;
@@ -28,7 +29,11 @@ export default function Login({ onSubmitHandler }: IForm) {
         if (loginResult) {
             onSuccessHandler(loginResult)
         }
-    }, [loginResult])
+        if(Object.keys(currentUser).length>0){
+            redirectPage('/tenant')
+        }
+    }, [loginResult, currentUser])
+
 
     const signInHandler = (evt: any) => {
         evt.preventDefault();

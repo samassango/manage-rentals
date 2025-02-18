@@ -117,7 +117,11 @@
     height: 1.5rem;
 }
 
-.notification a {}
+.iconButtons {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+}
 
 .logoutButton {
     padding: 1rem;

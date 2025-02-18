@@ -4,7 +4,7 @@ import styles from './CreateTenant.module.css'
 import { useCurrentUser } from '@/app/context/UserContext';
 import { useTanentContext } from '@/app/context/TanentContext';
 import { redirectPage } from '@/app/actions/login';
-import { useRouter } from 'next/navigation';
+import { permanentRedirect, useRouter } from 'next/navigation';
 
 
 export interface ITenant {
@@ -35,15 +35,12 @@ export default function CreateTenant({ onCreateTenant }: ITenant) {
     if (tanents) {
       onSuccessHandler(tanents)
     }
-  }, [tanents])
-
-  useEffect(() => {
-    if (currentTanent) {
-      console.log("useEffect is here")
-      router.push('/tenant/tenant-admin')
-      //redirectPage('/tenant/tenant-admin')
+    if(currentTanent && currentTanent.id){
+      redirectPage('/tenant/tenant-admin')
     }
-  }, [currentTanent])
+  }, [tanents, currentTanent])
+
+
 
   const onFormSubmit = (e: any) => {
     e.preventDefault()

@@ -34,7 +34,7 @@ export const UserProvider = ({ children }: any) => {
                         console.log({ userData })
                         if (userData.id) {
                             setCurrentUser(userData)
-                            redirectPage('/tenant')
+                            //redirectPage('/tenant')
                         } else {
                             redirectPage('/login')
                         }
@@ -45,9 +45,12 @@ export const UserProvider = ({ children }: any) => {
                 redirectPage('/login')
             }
         }
+        // else{
+        //     redirectPage('/tenant')
+        // }
             
     }, [user])
-    // console.log({ user, currentUser })
+    
     return (
         <UserContext.Provider value={{ user, onSuccessHandler, currentUser }}>
             {children}

@@ -49,6 +49,9 @@ export const TanentProvider = ({ children }: any) => {
                 })
             }
         }
+        // else{
+        //     redirectPage('/tenant/tenant-admin')
+        // }
     }, [])
 
     // useEffect(() => {
