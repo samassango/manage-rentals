@@ -17,12 +17,11 @@
 .sideBarContainer {
   width: 20%;
   height: 90vh;
-  background-color: #4e4b4b;
+  background-color: rgba(90, 92, 92, 0.7);
 }
 
 .mainContainer{
     width: 80%;
-    border: 1px solid orangered;
 }
 
 @media only screen and (max-width: 620px ) {

@@ -45,7 +45,7 @@
 }
 
 .modalContent {
-    background-color: #584c4c82;
+    background-color: rgba(90, 92, 92, 0.7);;
     padding: 10px;
     border: 1px solid #888;
     width: 80%;
