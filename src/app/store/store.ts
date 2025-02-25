@@ -7,7 +7,9 @@ const useUserStore = create(
             user: null,
             currentUser: null,
             tanents: [],
-            currentTanent: null
+            currentTanent: null,
+            properties: [],
+            property: null
         },
         (set, get) => {
             return {
@@ -39,6 +41,20 @@ const useUserStore = create(
                         currentTanent: typeof nextCurrentTanent === 'function'
                             ? nextCurrentTanent(state.currentTanent)
                             : nextCurrentTanent
+                    }))
+                },
+                setProperties: (nextProperties: any) => {
+                    set((state) => ({
+                        properties: typeof nextProperties === "function"
+                            ? nextProperties(state.properties)
+                            : nextProperties
+                    }))
+                },
+                setProperty: (nextProperty: any) => {
+                    set((state) => ({
+                        property: typeof nextProperty === "function"
+                            ? nextProperty(state.properties)
+                            : nextProperty
                     }))
                 }
             }

@@ -29,7 +29,7 @@ export default function Login({ onSubmitHandler }: IForm) {
         if (loginResult) {
             onSuccessHandler(loginResult)
         }
-        if(Object.keys(currentUser).length>0){
+        if(currentUser && Object.keys(currentUser).length>0){
             redirectPage('/tenant')
         }
     }, [loginResult, currentUser])

@@ -54,13 +54,6 @@ export const TanentProvider = ({ children }: any) => {
         // }
     }, [])
 
-    // useEffect(() => {
-    //     console.log('effect', currentTanent)
-    //     if (currentTanent) {
-    //          redirectPage('/tenant/tenant-admin')
-    //     }
-    // }, [currentTanent])
-
     const changeTanent = (ownerId: string) => {
         if (tanents.length) {
             const tanent = tanents.find(tanentObject => tanentObject.tenantOwnerId === ownerId)
@@ -75,6 +68,6 @@ export const TanentProvider = ({ children }: any) => {
 
 export const useTanentContext = () => {
     const context = useContext(TanentContext)
-    if (!context) throw new Error('useCurrentUser must be used within a UserProvider')
+    if (!context) throw new Error('useTanentContext must be used within a TanentProvider')
     return context
 }

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import styles from './Dashboard.module.css'
 import { IoGrid } from 'react-icons/io5';
 import { IoMdMenu } from 'react-icons/io';
@@ -10,6 +10,9 @@ import { GrCurrency } from 'react-icons/gr';
 import TabsSettings from '../tabs/Tabs';
 import ModalDialog from '../modal/ModalDialog';
 import ListingForm from '../listingForm/ListingForm';
+import { useCurrentUser } from '@/app/context/UserContext';
+import { IPropertyForm } from '@/app/models';
+import { usePropertyContext } from '@/app/context/PropertyContext';
 
 const propertyList = [
     {
@@ -59,6 +62,7 @@ interface ISetting {
     minNoOfBathrooms: number
     activeTab: string
 }
+
 const Settings = ({ onChangeBudget, onChangeBedroom, onChangeBathroom, settingBudget, noOfBedroom, noOfBathroom, minAmount, minNoOfBedrooms, maxAmount, maxNoOfBedrooms, maxNoOfBathrooms, minNoOfBathrooms, activeTab }: ISetting) => {
     return (
         <div className={styles.tab}>
@@ -89,12 +93,41 @@ const Settings = ({ onChangeBudget, onChangeBedroom, onChangeBathroom, settingBu
     )
 }
 
-export default function Dashboard() {
+interface IDashboard {
+    onCreateNewListing: (form: IPropertyForm, token: string) => Promise<any>
+    onLoadListing: (userId:string, token: string) => Promise<any>
+}
+
+export default function Dashboard({onCreateNewListing, onLoadListing}:IDashboard) {
     const [activeTab, setActiveTab] = useState('TabBuy')
     const [settingBudget, setSettingBudget] = useState(0)
     const [noOfBedroom, setNoOfBedroom] = useState(0)
     const [noOfBathroom, setNoOfBathrooms] = useState(0)
     const [openCreateListingModal, setOpenCreateListingModal] = useState(false)
+    const [createNewListingLoading, setCreateNewListingLoading] = useState(false)
+    const [isCreationSuccess, setIsCreationSuccess] = useState(false)
+    const [createdProperty, setCreatedProperty] = useState(null)
+ 
+    const { currentUser, user } = useCurrentUser()
+
+    const {properties, onGetPropertiesSuccessHandler} = usePropertyContext()
+
+    useEffect(()=>{
+        if(currentUser && currentUser.id){
+            onLoadListing(currentUser.id, user?.token||'').then(res=>{
+                onGetPropertiesSuccessHandler(res)
+            })
+        }
+    },[])
+
+    useEffect(()=>{
+        if(createdProperty){
+            onLoadListing(currentUser.id, user?.token||'').then(res=>{
+                onGetPropertiesSuccessHandler(res)
+            })
+        }
+    },[createdProperty])
+
     const onTabChange = (tab: string) => {
         setActiveTab(tab)
     }
@@ -117,10 +150,22 @@ export default function Dashboard() {
     const handleAddListing = (e:any) =>{
         e.preventDefault();
         setOpenCreateListingModal(true)
+        setIsCreationSuccess(false)
     }
-    const onAddNewListing = (form:any) =>{
+    const onAddNewListing =async (form:any) =>{
+        setCreateNewListingLoading(true)
+        form.propertyOwnerId = currentUser.id;
+        let token = user && user.token || ''
         console.log({form})
+       const properties = await onCreateNewListing(form, token)
+       if(properties){
+        setCreateNewListingLoading(false)
+        handleIconCloseCreateListing();
+        setIsCreationSuccess(true)
+        setCreatedProperty(properties)
+       }
     }
+    console.log({currentUser, properties})
     return (
         <div className={styles.container}>
             <div className={styles.adminSettings}>
@@ -179,18 +224,18 @@ export default function Dashboard() {
                     </div>
                 </div>
                 <div className={styles.propertylisting}>
-                    {propertyList.map(property => (<div className={styles.propertyCard}>
+                    {properties.length ? properties.map(property => (<div className={styles.propertyCard} key={property.propertyAddress+'__id'}>
                         <div className={styles.propertyImage}>
                             <span className={styles.sales}>Sale</span>
-                            <Image src={property.image} alt={''} width="300" height="200" />
+                            <Image src={property.propertyImages[0]} alt={''} width="300" height="200" />
                         </div>
                         <div className={styles.propertyInfo}>
                             <div className={styles.propertyInfoContainer}>
                                 <div className={styles.propertyLocation}>
-                                    <FaLocationDot /><label>{property.address}</label>
+                                    <FaLocationDot /><label>{property.propertyAddress}</label>
                                 </div>
                                 <div className={styles.propertyPrice}>
-                                    <GrCurrency /><label>R {property.price}</label>
+                                    <GrCurrency /><label>R {property.propertyPrice}</label>
                                 </div>
                             </div>
                             <div className={styles.propertyInfoIcon}>
@@ -198,7 +243,7 @@ export default function Dashboard() {
                             </div>
                         </div>
 
-                    </div>))}
+                    </div>)): 'Please add your new listing'}
                 </div>
                 <ModalDialog
                     title='Add property listing'
@@ -206,7 +251,7 @@ export default function Dashboard() {
                     isModalOpen={openCreateListingModal}
                     enableCloseIcon={true}
                     onIconClose={handleIconCloseCreateListing} >
-                    <ListingForm onAddNewListing={onAddNewListing}/>
+                    <ListingForm isSuccess={isCreationSuccess} isLoading={createNewListingLoading} onAddNewListing={onAddNewListing} handleIconCloseCreateListing={handleIconCloseCreateListing}/>
                 </ModalDialog>
             </div>
 
