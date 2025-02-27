@@ -1,0 +1,76 @@
+
+.propertyCard {
+    width: 20rem;
+    background: rgba(90, 92, 92, 0.7);
+    margin: 10px;
+    padding: .5rem;
+    border-radius: .5rem;
+}
+
+.propertyImage {
+    width: 100%;
+    background: #e4dfdf7e;
+    text-align: center;
+    border-radius: .2rem;
+    position: relative;
+    object-fit: cover;
+}
+
+.propertyImage img {
+    object-fit: cover;
+}
+
+.sales {
+    top: .3rem;
+    right: 0;
+    background: rgba(90, 92, 92, 0.7);
+    padding: .3rem;
+    border-radius: 100px 0 0 100px;
+    font-size: 1rem;
+    font-weight: 600;
+    position: absolute;
+}
+
+.propertyInfo {
+    display: flex;
+}
+
+.propertyInfoContainer {
+    width: 80%;
+}
+
+.propertyInfoIcon {
+    width: 20%;
+    align-content: center;
+    border-radius: 100%;
+}
+
+.propertyInfoIcon svg {
+    font-size: 3rem;
+    background: rgba(59, 57, 57, 0.9);
+    padding: 10px;
+    border-radius: 100%;
+}
+
+.propertyLocation {
+    display: flex;
+    margin: 1rem 0;
+}
+
+.propertyLocation svg {
+    font-size: 1.5rem;
+    margin-right: 10px;
+}
+
+.propertyPrice {
+    display: flex;
+    margin: 1rem 0;
+    font-size: 1rem;
+    font-weight: 600;
+
+}
+
+.propertyPrice svg {
+    font-size: 1rem;
+    margin-right: 10px;
+}

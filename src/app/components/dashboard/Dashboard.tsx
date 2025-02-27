@@ -242,7 +242,6 @@ export default function Dashboard({onCreateNewListing, onLoadListing}:IDashboard
                                 <FaCartPlus />
                             </div>
                         </div>
-
                     </div>)): 'Please add your new listing'}
                 </div>
                 <ModalDialog

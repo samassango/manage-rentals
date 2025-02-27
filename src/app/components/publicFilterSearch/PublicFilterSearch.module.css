@@ -1,0 +1,48 @@
+.searchContainer {
+    display: flex;
+
+    background: rgba(139, 133, 133, 0.726);
+    width: 60%;
+    height: 5rem;
+    border-radius: .5rem;
+    position: absolute;
+    top: 20rem;
+    padding: 1rem;
+    flex-grow: 5;
+    gap: 1rem;
+}
+
+.filterItem {
+   display: flex;
+   flex-direction: column;
+   width: 100%;
+}
+
+.filterItem input{
+    height: 2rem;
+    padding: .5rem;
+}
+
+.filterItem select {
+    height: 2rem;
+    padding: .5rem;
+}
+
+.filterItem .searchBtn {
+    height: 2rem;
+    padding: .5rem;
+    margin-top: 1rem;
+    font-weight: 600;
+    background: rgba(83, 82, 82, 0.616);
+    border: .1rem solid #fff;
+    border-radius: .3rem;
+}
+
+.filterItem .searchBtn:hover {
+    background: rgba(154, 151, 151, 0.616)
+}
+
+.filterItem label {
+    font-weight: 600;
+    letter-spacing: .2rem;
+}
