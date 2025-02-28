@@ -30,9 +30,7 @@
     padding: 0 1rem;
     font-size: 1rem;
     font-weight: 600;
-    outline: none;
-    border-bottom: 5px double rgb(215, 210, 210)  ;
-    border-top: 5px double rgb(215, 210, 210) ;
+    border-bottom: 5px double rgb(215, 210, 210);
     margin: 0 1rem;
   }
   

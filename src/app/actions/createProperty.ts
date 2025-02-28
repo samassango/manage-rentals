@@ -26,6 +26,7 @@ export async function createProperty(property: IPropertyForm, token: string) {
 
         const propertyFormData: IPropertyForm = {
             ...property,
+            propertyAvailability: true,
             propertyImages: (await propertyImageResponse.json()).arrURL
         }
         const propertyResponse = await fetch(BASE_URL.createNewPropertyList, {

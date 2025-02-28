@@ -2,7 +2,7 @@
   display: flex;
   flex-direction: column;
   background-color: rgba(126, 192, 222, 0.775);
-  
+
 }
 
 .main {
@@ -16,19 +16,43 @@
   align-items: center;
   width: 100%;
   position: relative;
- background: rgba(141, 180, 198, 0.725);
- border-radius: 0 0 15rem 15rem ;
+  background: rgba(141, 180, 198, 0.725);
+  /* border-radius: 0 0 15rem 15rem; */
+  border-radius: 0 0 62rem 0;
 }
 
 .main .heading h1 {
   letter-spacing: .1rem;
-  
+
   font-size: 3rem;
 }
 
 .main .heading h1 span {
   font-style: italic;
   color: rgba(35, 33, 33, 0.788)
+}
+
+.line {
+  display: flex;
+  width: 50%;
+  justify-content: center;
+  margin-left: 10rem;
+  /* border: .1rem solid olivedrab; */
+}
+
+.line .lineOne {
+  border: .3rem solid rgb(52, 49, 49);
+  width: 5rem;
+}
+
+.line .lineTwo {
+  border: .3rem solid rgba(233, 5, 5, 0.927);
+  width: 5rem;
+}
+
+.line .lineThree {
+  border: .3rem solid rgb(17, 17, 225);
+  width: 5rem;
 }
 
 .main .heading h4 {
@@ -66,7 +90,53 @@
 
 .main .listingContainer {
   display: flex;
+  justify-content: center;
   flex-wrap: wrap;
+
+  width: 100%;
 }
+
+.listingContainer .propertyHeading {
+  display: flex;
+  justify-content: space-between;
+  width: 70%;
+  height: 2rem;
+  margin-top: 1rem;
+  background: rgba(90, 92, 92, 0.7);
+}
+
+.listingContainer .propertyHeading label {
+  font-size: 1rem;
+  font-weight: 600;
+  line-height: 10px;
+  margin: 10px;
+}
+
+.listingContainer .propertyHeading .filter {
+  display: flex;
+  justify-content: end;
+}
+
+.listingContainer .propertyHeading .filter .filterButton {
+  background: transparent;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  padding: .2rem;
+}
+
+.listingContainer .propertyHeading .filter .filterButton svg {
+  font-size: 1.5rem;
+
+}
+
+.propertiesContainer {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  width: 70%;
+  background: rgba(126, 192, 222, 0.775);
+}
+
 
 .footer {}

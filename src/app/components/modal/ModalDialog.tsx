@@ -6,12 +6,12 @@ export interface IModalDialog {
     title: string;
     onIconClose: () => void
     children: React.ReactNode;
-    titleBarDialogIcon: ()=> React.ReactNode;
+    titleBarDialogIcon: () => React.ReactNode;
 }
 export default function ModalDialog(dialog: IModalDialog) {
     const [isOpen, setIsOpen] = useState(false)
 
-    const { children, enableCloseIcon, isModalOpen,title, onIconClose, titleBarDialogIcon } = dialog
+    const { children, enableCloseIcon, isModalOpen, title, onIconClose, titleBarDialogIcon } = dialog
 
     useEffect(() => {
         setIsOpen(isModalOpen)
@@ -26,15 +26,15 @@ export default function ModalDialog(dialog: IModalDialog) {
             <div className={styles.modalContainer}>
 
                 <div className={styles.modalContent}>
-                   
-                        <div className={styles.modalHeader}>
-                            <div className='titleBar'>
-                                {titleBarDialogIcon && titleBarDialogIcon()}
-                                {title && <label htmlFor='titlle'>{title}</label>}
-                            </div>
-                      {enableCloseIcon && <span className={styles.close} onClick={closeModal}>&times;</span> }
+
+                    <div className={styles.modalHeader}>
+                        <div className='titleBar'>
+                            {titleBarDialogIcon && titleBarDialogIcon()}
+                            {title && <label htmlFor='titlle'>{title}</label>}
                         </div>
-                 
+                        {enableCloseIcon && <span className={styles.close} onClick={closeModal}>&times;</span>}
+                    </div>
+
                     {children}
                 </div>
 

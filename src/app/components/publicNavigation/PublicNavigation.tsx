@@ -16,8 +16,8 @@ export default function PublicNavigation() {
     </div>
     <ul className={styles.headerItem}>
       <li><a href="/"><span>Home</span></a></li>
-      <li><a href="/"><span>About</span></a></li>
       <li><a href="/"><span>Properties</span></a></li>
+      <li><a href="/"><span>About</span></a></li>
       <li><a href="/"><span>Testimonials</span></a></li>
     </ul>
     <div className={styles.headerItem}>

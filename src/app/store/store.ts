@@ -9,7 +9,9 @@ const useUserStore = create(
             tanents: [],
             currentTanent: null,
             properties: [],
-            property: null
+            property: null,
+            publicProperties: [],
+            publicProperty: null
         },
         (set, get) => {
             return {
@@ -55,6 +57,20 @@ const useUserStore = create(
                         property: typeof nextProperty === "function"
                             ? nextProperty(state.properties)
                             : nextProperty
+                    }))
+                },
+                setPublicProperties: (nextPublicProperties: any) => {
+                    set((state) => ({
+                        properties: typeof nextPublicProperties === "function"
+                            ? nextPublicProperties(state.properties)
+                            : nextPublicProperties
+                    }))
+                },
+                setPublicProperty: (nextPublicProperty: any) => {
+                    set((state) => ({
+                        property: typeof nextPublicProperty === "function"
+                            ? nextPublicProperty(state.properties)
+                            : nextPublicProperty
                     }))
                 }
             }

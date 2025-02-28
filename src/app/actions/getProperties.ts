@@ -2,14 +2,13 @@
 
 import { BASE_URL, getFullUrl } from "../utils/url-base";
 
-export async function  getPublicPropertyListing( token: string) {
+export async function  getPublicPropertyListing() {
     try {
         
         const propertiesResponse = await fetch(BASE_URL.getPublicPropertyListing, {
             method: 'GET',
             headers: {
-                'Content-Type': 'application/json',
-                'Authorization': `Bearer ${token}`
+                'Content-Type': 'application/json'
             }
         })
         if (!propertiesResponse.ok) {
