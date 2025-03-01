@@ -17,7 +17,7 @@ export default function PropertyCard({ property }: IPropertyCard) {
         <div className={styles.propertyCard} key={property.propertyAddress + '__id'}>
             <div className={styles.propertyImage}>
                 <span className={styles.sales}>Sale</span>
-                <Image src={property.propertyImages[0]} alt={''} width="300" height="200" />
+                <Image src={property.propertyImages[0]} priority={true} alt={''} width="300" height="200" />
             </div>
             <div className={styles.propertyInfo}>
                 <div className={styles.propertyInfoContainer}>
