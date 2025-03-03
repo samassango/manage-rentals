@@ -49,9 +49,6 @@ export const TanentProvider = ({ children }: any) => {
                 })
             }
         }
-        // else{
-        //     redirectPage('/tenant/tenant-admin')
-        // }
     }, [])
 
     const changeTanent = (ownerId: string) => {

@@ -13,8 +13,8 @@ export default function SideBar() {
             <div className={styles.loginTanent}>Real Estate App</div>
         </div>
        <ul className={styles.menu}>
-        <li className={styles.navLink} ><a href='#'><MdHome/><span>Dashboard</span></a></li>
-        <li className={styles.navLink}><a href='#'><IoIosList/><span>Property Listing</span></a></li>
+        <li className={styles.navLink} ><a href='/tenant-admin'><MdHome/><span>Dashboard</span></a></li>
+        <li className={styles.navLink}><a href='/my-listing'><IoIosList/><span>My Property Listing</span></a></li>
         <li className={styles.navLink}><a href='#'><IoMdGitCompare /><span>Property Compare</span></a></li>
         <li className={styles.navLink}><a href='#'><LuTableProperties /><span>Rentals properties</span></a></li>
         <li className={styles.navLink}><a href='#'><FaUsers  /><span>User Management</span></a></li>

@@ -13,39 +13,8 @@ import ListingForm from '../listingForm/ListingForm';
 import { useCurrentUser } from '@/app/context/UserContext';
 import { IPropertyForm } from '@/app/models';
 import { usePropertyContext } from '@/app/context/PropertyContext';
+import { useTanentContext } from '@/app/context/TanentContext';
 
-const propertyList = [
-    {
-        address: 'Johannesburg, Guateng, South Africa',
-        image: 'http://127.0.0.1:3001/files/house-1.jpeg',
-        price: 2800000
-    },
-    {
-        address: 'Pretoria, Guateng, South Africa',
-        image: 'http://127.0.0.1:3001/files/house-2.jpeg',
-        price: 5800000
-    },
-    {
-        address: 'Sandton, Guateng, South Africa',
-        image: 'http://127.0.0.1:3001/files/house-3.jpeg',
-        price: 10200000
-    },
-    {
-        address: 'Midrand, Guateng, South Africa',
-        image: 'http://127.0.0.1:3001/files/house-4.jpeg',
-        price: 7400000
-    },
-    {
-        address: 'Midstream, Guateng, South Africa',
-        image: 'http://127.0.0.1:3001/files/house-5.jpg',
-        price: 2900000
-    },
-    {
-        address: 'Centurion, Guateng, South Africa',
-        image: 'http://127.0.0.1:3001/files/house-6.jpeg',
-        price: 3800000
-    }
-]
 
 interface ISetting {
     onChangeBudget: (evt: any) => void
@@ -109,20 +78,31 @@ export default function Dashboard({onCreateNewListing, onLoadListing}:IDashboard
     const [createdProperty, setCreatedProperty] = useState(null)
  
     const { currentUser, user } = useCurrentUser()
+    const {currentTanent} = useTanentContext()
 
     const {properties, onGetPropertiesSuccessHandler} = usePropertyContext()
 
     useEffect(()=>{
-        if(currentUser && currentUser.id){
-            onLoadListing(currentUser.id, user?.token||'').then(res=>{
+        if(currentTanent && currentTanent.id){
+            onLoadListing(currentTanent.id, user?.token||'').then(res=>{
                 onGetPropertiesSuccessHandler(res)
             })
         }
     },[])
+    useEffect(()=>{
+        if(currentTanent && currentTanent.id){
+            onLoadListing(currentTanent.id, user?.token||'').then(res=>{
+                console.log('res', res)
+                onGetPropertiesSuccessHandler(res)
+            })
+        }
+    },[currentTanent])
 
     useEffect(()=>{
         if(createdProperty){
-            onLoadListing(currentUser.id, user?.token||'').then(res=>{
+            //change to tanent Id currentTanent
+            const currentTanentId = currentTanent?.id ||''
+            onLoadListing(currentTanentId, user?.token||'').then(res=>{
                 onGetPropertiesSuccessHandler(res)
             })
         }
@@ -154,6 +134,8 @@ export default function Dashboard({onCreateNewListing, onLoadListing}:IDashboard
     }
     const onAddNewListing =async (form:any) =>{
         setCreateNewListingLoading(true)
+        //change this to tanent id using currentTanent
+        form.propertyTenantId = currentTanent && currentTanent.id
         form.propertyOwnerId = currentUser.id;
         let token = user && user.token || ''
         console.log({form})
@@ -165,7 +147,7 @@ export default function Dashboard({onCreateNewListing, onLoadListing}:IDashboard
         setCreatedProperty(properties)
        }
     }
-    console.log({currentUser, properties})
+    console.log({currentUser, properties, currentTanent})
     return (
         <div className={styles.container}>
             <div className={styles.adminSettings}>
@@ -224,9 +206,9 @@ export default function Dashboard({onCreateNewListing, onLoadListing}:IDashboard
                     </div>
                 </div>
                 <div className={styles.propertylisting}>
-                    {properties.length ? properties.map(property => (<div className={styles.propertyCard} key={property.propertyAddress+'__id'}>
+                    {properties.length ? properties.map((property, index) => (<div className={styles.propertyCard} key={index+'_'+property.propertyAddress.replaceAll(',','').replaceAll(' ','_')+'__id'}>
                         <div className={styles.propertyImage}>
-                            <span className={styles.sales}>Sale</span>
+                            <span className={styles.sales}>Rental</span>
                             <Image src={property.propertyImages[0]} alt={''} width="300" height="200" />
                         </div>
                         <div className={styles.propertyInfo}>

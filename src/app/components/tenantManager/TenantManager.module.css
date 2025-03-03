@@ -1,0 +1,69 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    width: 30rem;
+    padding: 10px;
+    border-radius: .5rem;
+    border: .1rem solid transparent;
+    background: rgba(86, 81, 81, 0.871);
+    box-shadow: 5px 5px 5px gray;
+}
+
+.card {
+    display: flex;
+    flex-direction: column;
+}
+
+.cardInfo {
+    display: flex;
+    margin: .5rem;
+    padding: .5rem 0;
+    background: rgba(66, 156, 66, 0.766);
+    border-radius: .5rem;
+    justify-content: center;
+}
+
+.cardInfo label {
+    font-size: 1.5rem;
+    font-weight: 300;
+    padding-right: .5rem;
+}
+
+.cardInfo span {
+    font-size: 1.5rem;
+    font-weight: 600;
+}
+
+.actionsContainer {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+}
+
+.actionsContainer .newTenant {
+    font-size: 1rem;
+    font-weight: 600;
+    width: 13rem;
+    height: 3rem;
+    border-radius: .4rem;
+    background-color: gray;
+    border: .1rem solid transparent;
+}
+
+.actionsContainer .newTenant:hover {
+    background-color: rgb(158, 144, 144);
+}
+
+.actionsContainer .continueLoggingIn {
+    font-size: 1rem;
+    font-weight: 600;
+    width: 13rem;
+    height: 3rem;
+    border-radius: .4rem;
+    border: .1rem solid transparent;
+    background-color: rgba(57, 143, 92, 0.788);
+}
+
+.actionsContainer .continueLoggingIn:hover {
+    background-color: rgba(111, 175, 125, 0.832);
+}

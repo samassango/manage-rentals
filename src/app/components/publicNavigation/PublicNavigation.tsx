@@ -7,23 +7,23 @@ import { RiAdminFill } from 'react-icons/ri';
 export default function PublicNavigation() {
   return (
     <nav className={styles.navigation}>
-    <div className={styles.headerItem}>
-      <SiConstruct3 width={100} height={100} />
-      <div>
-        <h1>ConstruTech</h1>
-        <label>Real Estate</label>
+      <div className={styles.headerItem}>
+        <SiConstruct3 width={100} height={100} />
+        <div>
+          <h1>ConstruTech</h1>
+          <label>Real Estate</label>
+        </div>
       </div>
-    </div>
-    <ul className={styles.headerItem}>
-      <li><a href="/"><span>Home</span></a></li>
-      <li><a href="/"><span>Properties</span></a></li>
-      <li><a href="/"><span>About</span></a></li>
-      <li><a href="/"><span>Testimonials</span></a></li>
-    </ul>
-    <div className={styles.headerItem}>
-      <a href="/" className={styles.contactUs}><label>Contact us</label></a>
-      <a href="/login" className={styles.loginAdmin}><RiAdminFill /></a>
-    </div>
-  </nav>
+      <ul className={styles.headerItem}>
+        <li><a href="/"><span>Home</span></a></li>
+        <li><a href="/properties"><span>Properties</span></a></li>
+        <li><a href="/about"><span>About</span></a></li>
+        <li><a href="/testimonials"><span>Testimonials</span></a></li>
+      </ul>
+      <div className={styles.headerItem}>
+        <a href="/contact-us" className={styles.contactUs}><label>Contact us</label></a>
+        <a href="/login" className={styles.loginAdmin}><RiAdminFill /></a>
+      </div>
+    </nav>
   );
 }

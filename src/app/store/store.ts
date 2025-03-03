@@ -1,18 +1,20 @@
 import { create } from 'zustand'
 import { combine } from 'zustand/middleware'
 import { persist } from 'zustand/middleware'
+
+const initialState ={
+    user: null,
+    currentUser: null,
+    tanents: [],
+    currentTanent: null,
+    properties: [],
+    property: null,
+    publicProperties: [],
+    publicProperty: null
+}
 const useUserStore = create(
     persist(combine(
-        {
-            user: null,
-            currentUser: null,
-            tanents: [],
-            currentTanent: null,
-            properties: [],
-            property: null,
-            publicProperties: [],
-            publicProperty: null
-        },
+       initialState,
         (set, get) => {
             return {
                 setUser: (nextUser: any) => {
@@ -72,7 +74,10 @@ const useUserStore = create(
                             ? nextPublicProperty(state.properties)
                             : nextPublicProperty
                     }))
-                }
+                },
+                reset: () => {
+                    set({})
+                },
             }
         },
     ), {

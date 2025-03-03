@@ -1,0 +1,149 @@
+.container{
+    display: flex;
+    width: 100%;
+    gap: 1rem;
+}
+
+.propertylisting{
+    display: flex;
+    flex-direction: column;
+    flex-grow: 2;
+}
+
+.propertyCard {
+    display: flex;
+    margin: .5rem;
+    padding: .5rem;
+    background: rgba(128, 128, 128, 0.592);
+    width: 100%;
+    border-radius: .5rem;
+}
+
+
+.propertyImage {
+    background: #e4dfdf7e;
+    text-align: center;
+    border-radius: .2rem;
+    position: relative;
+    object-fit: cover;
+}
+
+.propertyImage img {
+    object-fit: cover;
+}
+
+.sales {
+    top: .3rem;
+    right: 0;
+    background: rgba(90, 92, 92, 0.7);
+    padding: .3rem;
+    border-radius: 100px 0 0 100px;
+    font-size: 1rem;
+    font-weight: 600;
+    position: absolute;
+}
+
+.propertyInfo{
+    display: flex;
+    flex-direction: column;
+    flex-grow: 2;
+    margin: 0 1rem;;
+}
+
+
+.propertyInfoContainer {
+    width: 100%;
+}
+
+.propertyInfoIcon {
+    width: 20%;
+    align-content: center;
+    border-radius: 100%;
+}
+
+.propertyInfoIcon svg {
+    font-size: 3rem;
+    background: rgba(59, 57, 57, 0.9);
+    padding: 10px;
+    border-radius: 100%;
+}
+
+.propertyLocation {
+    display: flex;
+    margin: 1rem 0;
+}
+
+.propertyLocation svg {
+    font-size: 1.5rem;
+    margin-right: 10px;
+}
+
+.propertyPrice {
+    display: flex;
+    margin: 1rem 0;
+    font-size: 1rem;
+    font-weight: 600;
+
+}
+
+.propertyPrice svg {
+    font-size: 1rem;
+    margin-right: 10px;
+}
+
+.propertyStats {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: .5rem .5rem .5rem 0;
+    padding: 2rem;
+    background: rgba(128, 128, 128, 0.592);
+    border-radius: 1rem;
+}
+
+.propertyStats span{
+    font-size: 1rem;
+    font-weight: 600;
+    letter-spacing: .1rem;
+}
+
+.propertyStats .propertyNumber{
+    margin: 1rem;
+    padding: 1rem;
+    height: 3rem;
+    width: 3rem;
+    border-radius: 100%;
+    background: rgba(70, 110, 70, 0.667);
+    text-align: center;
+}
+
+.btnContainer {
+    display: flex;
+    justify-content: center;
+    background: transparent;
+}
+
+.createListingBtn {
+    margin: .5rem;
+    padding: .5rem;
+    width: 10rem;
+    border-radius: .4rem;
+    background: rgba(90, 92, 92, 0.7);
+    border: 1px solid orange;
+    cursor: pointer;
+}
+
+.createListingBtn:hover {
+    background: rgba(117, 110, 110, 0.793);
+}
+
+.createListingBtn svg {
+    font-size: 1rem;
+}
+
+.createListingBtn span {
+    margin: 0 10px;
+    font-weight: 600;
+    font-size: 1rem;
+}

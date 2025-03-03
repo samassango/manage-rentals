@@ -8,12 +8,11 @@ import PublicFilterSearch from './components/publicFilterSearch/PublicFilterSear
 import PropertyCard from './components/PropertyCard/PropertyCard';
 import { IoGrid } from 'react-icons/io5';
 import { IoMdMenu } from 'react-icons/io';
-import { PublicListingPropertyProvider } from './context/PublicListingProperty';
+import { PublicListingPropertyProvider } from './context/PublicListingPropertyContext';
 import { getPublicPropertyListing } from './actions/getProperties';
 import { useEffect, useState } from 'react';
 import { IPropertyModel } from './models';
-import MapWithSearch from './components/SearchForm/SearchForm';
-import LeafletMap from './components/LeafletMap/LeafletMap';
+import { getSessionData } from './actions/login';
 
 export default function Home() {
   const [properties, setProperties] = useState([])
@@ -31,6 +30,7 @@ export default function Home() {
       setListingError(properties)
     }
   }
+  
   console.log({ properties, listingError })
   return (
     <PublicListingPropertyProvider>

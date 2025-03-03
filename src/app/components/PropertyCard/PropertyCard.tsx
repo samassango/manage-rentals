@@ -23,13 +23,13 @@ export default function PropertyCard({ property }: IPropertyCard) {
                 <div className={styles.propertyInfoContainer}>
                     <div className={styles.features}>
                         <div className={styles.featureItem}>
-                            <label>3</label> <FaBed />
+                            <label>{property.propertyNoOfBadroom}</label> <FaBed />
                         </div>
                         <div className={styles.featureItem}>
-                            <label>1</label> <FaBath />
+                            <label>{property.propertyNoOfBathroom}</label> <FaBath />
                         </div>
                         <div className={styles.featureItem}>
-                            <label>1</label> <BiSolidCarGarage />
+                            <label>{property.propertyNoOfGarage}</label> <BiSolidCarGarage />
                         </div>
                     </div>
                     <div className={styles.propertyLocation}>

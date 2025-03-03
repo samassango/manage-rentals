@@ -25,6 +25,7 @@ export const UserProvider = ({ children }: any) => {
         setUser(data)
     }
 
+
     useEffect(() => {
         if (currentUser==null){
             if (user) {
@@ -34,23 +35,18 @@ export const UserProvider = ({ children }: any) => {
                         console.log({ userData })
                         if (userData.id) {
                             setCurrentUser(userData)
-                            //redirectPage('/tenant')
-                        } else {
-                            redirectPage('/login')
                         }
 
                     })
                 }
-            } else {
-                redirectPage('/login')
             }
+            //  else {
+            //     redirectPage('/login')
+            // }
         }
-        // else{
-        //     redirectPage('/tenant')
-        // }
             
     }, [user])
-    
+    console.log({currentUser, user})
     return (
         <UserContext.Provider value={{ user, onSuccessHandler, currentUser }}>
             {children}

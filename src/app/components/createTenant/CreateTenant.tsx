@@ -8,10 +8,11 @@ import { permanentRedirect, useRouter } from 'next/navigation';
 
 
 export interface ITenant {
+  isLoadingFn: (val:boolean)=>void;
   onCreateTenant: (data: ITenantDetails, token: string) => Promise<any>
 }
 
-export default function CreateTenant({ onCreateTenant }: ITenant) {
+export default function CreateTenant({ onCreateTenant, isLoadingFn }: ITenant) {
   const { currentUser, user } = useCurrentUser()
   const { tanents, currentTanent, onSuccessHandler, changeTanent } = useTanentContext()
   // useRouter is used for client component
@@ -36,13 +37,14 @@ export default function CreateTenant({ onCreateTenant }: ITenant) {
       onSuccessHandler(tanents)
     }
     if(currentTanent && currentTanent.id){
-      redirectPage('/tenant/tenant-admin')
+      redirectPage('/tenant-admin')
     }
   }, [tanents, currentTanent])
 
 
 
   const onFormSubmit = (e: any) => {
+    isLoadingFn(true)
     e.preventDefault()
     let token = user?.token || ''
     onCreateTenant(form as ITenantDetails, token).then(tanent => {
