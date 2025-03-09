@@ -1,0 +1,146 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    width: -webkit-fill-available;
+    width: -moz-available;
+   
+}
+
+.propertyCard{
+    display: flex;
+    width: -webkit-fill-available;
+    width: -moz-available;
+    margin: 1rem;
+    padding: .5rem;
+    border-radius: .3rem;
+    background: rgba(164, 160, 160, 0.756);
+}
+
+.propertyImage{
+    /* width: 100%; */
+    background: #e4dfdf7e;
+    /* text-align: center; */
+    border-radius: .2rem;
+    position: relative;
+    object-fit: cover;
+}
+
+.sales {
+    top: .3rem;
+    right: 0;
+    background: rgba(90, 92, 92, 0.7);
+    padding: .3rem;
+    border-radius: 100px 0 0 100px;
+    font-size: 1rem;
+    font-weight: 600;
+    position: absolute;
+}
+
+.propertyDetails{
+    flex: 1;
+    padding: 1rem;
+}
+
+.propertyPrice{
+    font-weight: 600;
+    font-size: 2rem;
+    letter-spacing: .2rem;
+}
+
+.propertyLocation {
+    display: flex;
+    margin: 1rem 0;
+    background: rgba(171, 166, 166, 0.678);
+    border-radius: .3rem;
+    padding: .3rem;
+}
+
+.propertyLocation svg {
+    font-size: 1.5rem;
+    margin-right: 10px;
+}
+
+.features{
+    display: flex;
+    gap: 1rem;
+    margin: .5rem 0;
+}
+
+.featureItem{
+    font-size: 1rem;
+}
+
+.featureItem svg {
+    font-size: 1.3rem;
+}
+
+.prropertyDescription{
+   display: flex;
+   flex-direction: column;
+}
+.prropertyDescription p {
+    margin: .5rem 0
+}
+.lines{
+    display: flex;
+    width: 30%;
+    height: .2rem;
+}
+
+.line1 {
+    width: 100%;
+    border: .1rem solid rgba(211, 197, 197, 0.853);
+    background: rgba(211, 197, 197, 0.853);
+}
+
+.line2 {
+    width: 100%;
+    border: .1rem solid rgba(171, 137, 137, 0.749);
+    background: rgba(171, 137, 137, 0.749);
+}
+
+.line3 {
+    width: 100%;
+    border: .1rem solid rgba(78, 73, 73, 0.812);
+    background: rgba(78, 73, 73, 0.812);
+}
+
+.loadingScreen{
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    margin-top: 6rem;
+}
+
+.createDate {
+    display: flex;
+    flex-direction: column;
+}
+
+.publisherDetails{
+    display: flex;
+    margin-top: .5rem;
+    flex-direction: column;
+}
+
+.publisher{
+    display: flex;
+    flex-direction: column;
+    margin: 1rem 0;
+    background: rgba(171, 166, 166, 0.678);
+    border-radius: .3rem;
+    padding: .3rem;
+}
+
+.publisherItem{
+    display: flex;
+    gap: .5rem
+}
+
+.publisherItem label{
+    font-size: 1rem;
+}
+.publisherItem span{
+    font-weight: 600;
+}

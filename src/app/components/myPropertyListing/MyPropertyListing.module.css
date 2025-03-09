@@ -147,3 +147,17 @@
     font-weight: 600;
     font-size: 1rem;
 }
+
+.features{
+    display: flex;
+    gap: 1rem;
+    margin: .5rem 0;
+}
+
+.featureItem{
+    font-size: 1rem;
+}
+
+.featureItem svg {
+    font-size: 1.3rem;
+}

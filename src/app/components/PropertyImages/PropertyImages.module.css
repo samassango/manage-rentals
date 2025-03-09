@@ -1,0 +1,24 @@
+.container{
+   display: flex;
+   flex-direction: column;
+   padding: .3rem;
+   border: none;
+}
+
+.mainImage{
+   width: 100%;
+}
+
+.smallImageContainer{
+    display: flex;
+    width: 22rem;
+    
+    /* flex-wrap: wrap; */
+    overflow-x: scroll;
+    padding: .2rem;
+}
+
+.smallImageContainer button{
+    background: transparent;
+    border: none;
+}

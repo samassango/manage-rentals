@@ -1,4 +1,3 @@
-'use client'
 
 import { IPropertyForm, ITenantDetails } from "../models";
 import { BASE_URL } from "../utils/url-base";

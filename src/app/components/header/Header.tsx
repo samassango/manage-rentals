@@ -62,7 +62,7 @@ export default function Header({ openUserProfile, openNotification, onMenuHandle
                     <div className={styles.profileImg}>
                         <button className={styles.iconButtons} onClick={OnViewUserProfile}><FaUser /></button>
                     </div>
-                    <label htmlFor='profileName' className={styles.profileName}>{currentUser.realm || 'User'}</label>
+                    <label htmlFor='profileName' className={styles.profileName}>{currentUser?.realm || 'User'}</label>
                 </div>
                 <div className={styles.notification}><button className={styles.iconButtons} onClick={onViewNotification}><IoNotifications /></button></div>
                 <button onClick={handleLogout} className={styles.logoutButton}><LuLogOut /><span>Logout</span></button>

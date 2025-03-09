@@ -1,8 +1,9 @@
-'use client'
+'use server'
 
 import { BASE_URL, getFullUrl } from "../utils/url-base";
 
 export async function  getTanents(token: string) {
+   
     try {
         const tanentsResponse = await fetch(BASE_URL.currentUser, {
             method: 'GET',
@@ -22,6 +23,7 @@ export async function  getTanents(token: string) {
 }
 
 export async function  getTanentByOwnerId(userId:string, token: string) {
+    console.log({userId, token})
     try {
         let url = getFullUrl(BASE_URL.tanentByOwnerId,{tenantOwnerId: userId})
         

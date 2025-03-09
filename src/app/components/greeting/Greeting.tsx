@@ -1,7 +1,8 @@
+'use client'
+
 import React, { useEffect, useState } from 'react';
 import styles from './Greeting.module.css'
 import { useCurrentUser } from '@/app/context/UserContext';
-import useUserStore from '@/app/store/store';
 
 export default function Greeting() {
     const [name, setName] = useState('client')

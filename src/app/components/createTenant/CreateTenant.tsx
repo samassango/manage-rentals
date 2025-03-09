@@ -1,3 +1,5 @@
+'use client'
+
 import ITenantDetails from '@/app/models/TenantModel';
 import React, { useEffect, useState } from 'react';
 import styles from './CreateTenant.module.css'
@@ -5,10 +7,11 @@ import { useCurrentUser } from '@/app/context/UserContext';
 import { useTanentContext } from '@/app/context/TanentContext';
 import { redirectPage } from '@/app/actions/login';
 import { permanentRedirect, useRouter } from 'next/navigation';
+import Button from '../button/button';
 
 
 export interface ITenant {
-  isLoadingFn: (val:boolean)=>void;
+  isLoadingFn?: (val:boolean)=>void;
   onCreateTenant: (data: ITenantDetails, token: string) => Promise<any>
 }
 
@@ -20,16 +23,18 @@ export default function CreateTenant({ onCreateTenant, isLoadingFn }: ITenant) {
   const [form, setForm] = useState({
     tenantName: '',
     tenantDescription: '',
-    tenantOwnerId: currentUser.id,
+    tenantOwnerId: currentUser ? currentUser.id:'',
     createdAt: new Date()
   })
   useEffect(() => {
-    if (!currentTanent && tanents.length > 0) {
+    if (!currentTanent && tanents.length > 0 && currentUser) {
       changeTanent(currentUser.id)
     }
   }, [])
   useEffect(() => {
-    changeTanent(currentUser.id)
+    if(currentUser){
+      changeTanent(currentUser.id)
+    }
   }, [currentUser])
 
   useEffect(() => {
@@ -44,7 +49,7 @@ export default function CreateTenant({ onCreateTenant, isLoadingFn }: ITenant) {
 
 
   const onFormSubmit = (e: any) => {
-    isLoadingFn(true)
+    isLoadingFn && isLoadingFn(true)
     e.preventDefault()
     let token = user?.token || ''
     onCreateTenant(form as ITenantDetails, token).then(tanent => {
@@ -78,7 +83,8 @@ export default function CreateTenant({ onCreateTenant, isLoadingFn }: ITenant) {
           {/* {errorTanentDescription && <span className={styles.inputError}>{errorTanentDescription}</span>} */}
         </div>
         <div className={styles.buttonContainer}>
-          <button onClick={onFormSubmit}>Create</button>
+          <Button onFormSubmit ={(e)=>onFormSubmit(e)}>Create</Button>
+          {/* <button onClick={onFormSubmit}>Create</button> */}
         </div>
       </form>
     </div>

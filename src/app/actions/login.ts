@@ -37,7 +37,7 @@ export async function createSession(sessionData: any) {
     // console.log({encryptedSessionData})
     cookies().set('session', JSON.stringify(sessionData), {
         httpOnly: true,
-        secure: process.env.NODE_ENV === 'production',
+        secure: true,
         maxAge: 60 * 60 * 24 * 7, // One week
         path: '/',
     })
@@ -52,6 +52,18 @@ export async function getSessionData() {
     // return payload;
     
     return JSON.parse(encryptedSessionData)
+}
+
+export async function updateSession(){
+      const encryptedSessionData =await cookies().get('session')?.value ||''
+      
+      const cookieStore = await cookies()
+      cookieStore.set('session', JSON.stringify(encryptedSessionData), {
+        httpOnly: true,
+        secure: true,
+        maxAge: 60 * 60 * 24 * 7, // One week
+        path: '/',
+    })
 }
 
 export async function redirectPage(slug: string) {

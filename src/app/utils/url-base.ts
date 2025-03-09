@@ -14,15 +14,17 @@ export const BASE_URL = {
 
     createNewPropertyList: `${host}/properties`,
     getPublicPropertyListing: `${host}/properties`,
-    getPropertyListingByUser: `${host}/properties/property-owner/:userId`,
-    getPropertyListingByTenant: `${host}/properties/property-tenant/:tenantId`
+    getPropertyListingByUser: `${host}/properties/property-owner/:userId/:tenantId`,
+    getPropertyListingByTenant: `${host}/properties/property-tenant/:tenantId`,
+    getPropertyId: `${host}/properties/:propertyId`,
+    getUserById: `${host}/get-current-user/:userId`
 }
 
 export const getFullUrl =(url: string, param:any): string=>{
     const keys = Object.keys(param)
-    let newURL = ''
+    let newURL = url
     keys.forEach(key=>{
-        newURL = url.replace(`:${key}`, param[key])
+        newURL = newURL.replace(`:${key}`, param[key])
     })
     return newURL;
 }

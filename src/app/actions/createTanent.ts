@@ -1,4 +1,4 @@
-'use client'
+'use server'
 
 import { ITenantDetails } from "../models";
 import { BASE_URL } from "../utils/url-base";

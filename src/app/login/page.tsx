@@ -10,11 +10,6 @@ import { UserProvider } from "../context/UserContext";
 
 export default function Login() {
   
-    const loginFormHandler = async (user: IUser): Promise<any> => {
-        const { username, password } = user;
-        return userLogin({ email: username, password } as ILogin);
-    }
- 
     return (
         <UserProvider>
             <div className={styles.container}>
@@ -26,7 +21,7 @@ export default function Login() {
                     </div>
                 </div>
                 <div className={styles.flexItem}>
-                    <LoginForm onSubmitHandler={loginFormHandler} />
+                    <LoginForm/>
                 </div>
             </div>
         </UserProvider>

@@ -7,6 +7,7 @@ const initialState ={
     currentUser: null,
     tanents: [],
     currentTanent: null,
+    selectedTenantId: null,
     properties: [],
     property: null,
     publicProperties: [],
@@ -45,6 +46,13 @@ const useUserStore = create(
                         currentTanent: typeof nextCurrentTanent === 'function'
                             ? nextCurrentTanent(state.currentTanent)
                             : nextCurrentTanent
+                    }))
+                },
+                setSelectedTanentId: (nextSelectedTanentId: any) => {
+                    set((state) => ({
+                        selectedTenantId: typeof nextSelectedTanentId === 'function'
+                            ? nextSelectedTanentId(state.selectedTenantId)
+                            : nextSelectedTanentId
                     }))
                 },
                 setProperties: (nextProperties: any) => {

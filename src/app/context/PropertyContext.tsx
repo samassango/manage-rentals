@@ -1,3 +1,5 @@
+"use client"
+
 import { createContext, useContext, useEffect } from "react";
 import { IPropertyModel } from "../models";
 import useUserStore from "../store/store";

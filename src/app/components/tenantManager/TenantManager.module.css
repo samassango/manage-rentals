@@ -34,6 +34,17 @@
     font-weight: 600;
 }
 
+.cardInfo select{
+    width: 15rem;
+    height: 2rem;
+    font-size: 1rem;
+    font-weight: 600;
+    padding: .2rem;
+    background: rgba(85, 82, 82, 0.736);
+    border-radius: .3rem;
+}
+
+
 .actionsContainer {
     display: flex;
     width: 100%;

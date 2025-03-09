@@ -1,27 +1,58 @@
+'use client'
+
 import { useTanentContext } from '@/app/context/TanentContext';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import styles from './TenantManager.module.css'
 import { redirectPage } from '@/app/actions/login';
 import CreateTenant, { ITenant } from '../createTenant/CreateTenant';
+import Loader from '../Loader';
+import { createTanent } from '@/app/actions/createTanent';
+import { ITenantDetails } from '@/app/models';
 
-export default function TenantManager({ onCreateTenant, isLoadingFn }: ITenant) {
+export default function TenantManager() {
     const [isCreateNewTenant, setIsCreateNewTenant] = useState(false)
-    
-    const { currentTanent } = useTanentContext()
+    const [isLoading, setIsLoading] = useState(false)
+    const { currentTanent, tanents,  updateSeletedTenant} = useTanentContext()
 
+    useEffect(()=>{
+        
+    },[])
+    
+    const isLoadingFn = () => {
+        setIsLoading(true)
+    }
+
+    const onCreateTenant = (data: ITenantDetails, token: string) => {
+        return createTanent(data, token)
+    }
+   console.log({tanents, currentTanent})
     if (!isCreateNewTenant && currentTanent && currentTanent.id) {
         const handleContinueLogin = () => {
-            isLoadingFn(true)
+            setIsLoading(true)
             redirectPage('/tenant-admin')
         }
         const handleCreateTent = () => setIsCreateNewTenant(true)
+        const handleOnChange = (e:any)=>{
+            console.log({selectedId: e.target.value})
+            updateSeletedTenant(e.target.value)
+        }
 
         return (
             <div className={styles.container}>
+                <div className={styles.loading}>
+                    {isLoading && <Loader />}
+                </div>
                 <div className={styles.card}>
                     <div className={styles.cardInfo}>
                         <label>Logging in to :</label>
-                        <span>{currentTanent.tenantName}</span>
+                        <select onChange={handleOnChange}>
+                            <option value={currentTanent.id}>{currentTanent.tenantName}</option>
+                            {
+                                tanents && tanents.map(data=>( 
+                                <option key={data.id} value={data.id}>{data.tenantName}</option>))
+                            }
+                        </select>
+                        {/* <span>{currentTanent.tenantName}</span> */}
                     </div>
                     <div className={styles.actionsContainer}>
                         <button className={styles.newTenant} onClick={handleCreateTent}>Create New Tenant</button>
@@ -34,6 +65,9 @@ export default function TenantManager({ onCreateTenant, isLoadingFn }: ITenant) 
     return (
         <div className={styles.container}>
             <h1>Create Tanent</h1>
+            <div className={styles.loading}>
+                {isLoading && <Loader />}
+            </div>
             <CreateTenant isLoadingFn={isLoadingFn} onCreateTenant={onCreateTenant} />
         </div>
     )

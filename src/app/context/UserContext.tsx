@@ -1,3 +1,5 @@
+"use client"
+
 import { createContext, useContext, useEffect } from "react";
 import { redirectPage } from "../actions/login";
 import { ICurrentUser } from "../models";

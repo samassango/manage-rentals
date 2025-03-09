@@ -1,3 +1,4 @@
+'use client'
 import React, { useEffect, useState } from 'react';
 import {  FaUser } from 'react-icons/fa';
 import { IoNotifications } from 'react-icons/io5';

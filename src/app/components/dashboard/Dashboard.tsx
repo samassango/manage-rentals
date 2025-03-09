@@ -5,15 +5,22 @@ import { IoMdMenu } from 'react-icons/io';
 import { LuHouse } from 'react-icons/lu';
 import { RiPlayListAddFill } from 'react-icons/ri';
 import Image from 'next/image'
-import { FaCartPlus, FaLocationDot } from 'react-icons/fa6';
+import { FaCartPlus, FaEye, FaLocationDot } from 'react-icons/fa6';
 import { GrCurrency } from 'react-icons/gr';
 import TabsSettings from '../tabs/Tabs';
 import ModalDialog from '../modal/ModalDialog';
 import ListingForm from '../listingForm/ListingForm';
 import { useCurrentUser } from '@/app/context/UserContext';
-import { IPropertyForm } from '@/app/models';
+import { IPropertyForm, IPropertyModel } from '@/app/models';
 import { usePropertyContext } from '@/app/context/PropertyContext';
 import { useTanentContext } from '@/app/context/TanentContext';
+import { createProperty } from '@/app/actions/createProperty';
+import { getPropertiesByTenantId } from '@/app/actions/getProperties';
+import Button from '../button/button';
+import { FaEdit } from 'react-icons/fa';
+import { redirect } from 'next/navigation';
+import { redirectPage } from '@/app/actions/login';
+import Loader from '../Loader';
 
 
 interface ISetting {
@@ -64,10 +71,10 @@ const Settings = ({ onChangeBudget, onChangeBedroom, onChangeBathroom, settingBu
 
 interface IDashboard {
     onCreateNewListing: (form: IPropertyForm, token: string) => Promise<any>
-    onLoadListing: (userId:string, token: string) => Promise<any>
+    onLoadListing: (userId: string, token: string) => Promise<any>
 }
 
-export default function Dashboard({onCreateNewListing, onLoadListing}:IDashboard) {
+export default function Dashboard() {
     const [activeTab, setActiveTab] = useState('TabBuy')
     const [settingBudget, setSettingBudget] = useState(0)
     const [noOfBedroom, setNoOfBedroom] = useState(0)
@@ -76,37 +83,37 @@ export default function Dashboard({onCreateNewListing, onLoadListing}:IDashboard
     const [createNewListingLoading, setCreateNewListingLoading] = useState(false)
     const [isCreationSuccess, setIsCreationSuccess] = useState(false)
     const [createdProperty, setCreatedProperty] = useState(null)
- 
+
     const { currentUser, user } = useCurrentUser()
-    const {currentTanent} = useTanentContext()
+    const { currentTanent } = useTanentContext()
 
-    const {properties, onGetPropertiesSuccessHandler} = usePropertyContext()
+    const { properties, onGetPropertiesSuccessHandler } = usePropertyContext()
 
-    useEffect(()=>{
-        if(currentTanent && currentTanent.id){
-            onLoadListing(currentTanent.id, user?.token||'').then(res=>{
+    useEffect(() => {
+        if (currentTanent && currentTanent.id) {
+            onLoadListing(currentTanent.id, user?.token || '').then(res => {
                 onGetPropertiesSuccessHandler(res)
             })
         }
-    },[])
-    useEffect(()=>{
-        if(currentTanent && currentTanent.id){
-            onLoadListing(currentTanent.id, user?.token||'').then(res=>{
+    }, [])
+    useEffect(() => {
+        if (currentTanent && currentTanent.id) {
+            onLoadListing(currentTanent.id, user?.token || '').then(res => {
                 console.log('res', res)
                 onGetPropertiesSuccessHandler(res)
             })
         }
-    },[currentTanent])
+    }, [currentTanent])
 
-    useEffect(()=>{
-        if(createdProperty){
+    useEffect(() => {
+        if (createdProperty) {
             //change to tanent Id currentTanent
-            const currentTanentId = currentTanent?.id ||''
-            onLoadListing(currentTanentId, user?.token||'').then(res=>{
+            const currentTanentId = currentTanent?.id || ''
+            onLoadListing(currentTanentId, user?.token || '').then(res => {
                 onGetPropertiesSuccessHandler(res)
             })
         }
-    },[createdProperty])
+    }, [createdProperty])
 
     const onTabChange = (tab: string) => {
         setActiveTab(tab)
@@ -127,27 +134,39 @@ export default function Dashboard({onCreateNewListing, onLoadListing}:IDashboard
         setNoOfBathrooms(noOfBathroom);
     }
     const handleIconCloseCreateListing = () => setOpenCreateListingModal(false)
-    const handleAddListing = (e:any) =>{
+    const handleAddListing = (e: any) => {
         e.preventDefault();
         setOpenCreateListingModal(true)
         setIsCreationSuccess(false)
     }
-    const onAddNewListing =async (form:any) =>{
+    const onAddNewListing = async (form: any) => {
         setCreateNewListingLoading(true)
         //change this to tanent id using currentTanent
         form.propertyTenantId = currentTanent && currentTanent.id
         form.propertyOwnerId = currentUser.id;
         let token = user && user.token || ''
-        console.log({form})
-       const properties = await onCreateNewListing(form, token)
-       if(properties){
-        setCreateNewListingLoading(false)
-        handleIconCloseCreateListing();
-        setIsCreationSuccess(true)
-        setCreatedProperty(properties)
-       }
+        console.log({ form })
+        const properties = await onCreateNewListing(form, token)
+        if (properties) {
+            setCreateNewListingLoading(false)
+            handleIconCloseCreateListing();
+            setIsCreationSuccess(true)
+            setCreatedProperty(properties)
+        }
     }
-    console.log({currentUser, properties, currentTanent})
+
+    const onCreateNewListing = (form: IPropertyForm, token: string) => {
+        return createProperty(form, token)
+    }
+
+    const onLoadListing = (tenantId: string, token: string) => {
+        return getPropertiesByTenantId(tenantId, token)
+    }
+    console.log({ currentUser, properties, currentTanent })
+    const onRedirectHandler = (property: IPropertyModel) => {
+        console.log({ property })
+        redirectPage(`/tenant-admin/${property.id}`)
+    }
     return (
         <div className={styles.container}>
             <div className={styles.adminSettings}>
@@ -206,9 +225,9 @@ export default function Dashboard({onCreateNewListing, onLoadListing}:IDashboard
                     </div>
                 </div>
                 <div className={styles.propertylisting}>
-                    {properties.length ? properties.map((property, index) => (<div className={styles.propertyCard} key={index+'_'+property.propertyAddress.replaceAll(',','').replaceAll(' ','_')+'__id'}>
+                    {properties.length ? properties.map((property, index) => (<div className={styles.propertyCard} key={index + '_' + property.propertyAddress.replaceAll(',', '').replaceAll(' ', '_') + '__id'}>
                         <div className={styles.propertyImage}>
-                            <span className={styles.sales}>Rental</span>
+                            <span className={styles.sales}>Sale</span>
                             <Image src={property.propertyImages[0]} alt={''} width="300" height="200" />
                         </div>
                         <div className={styles.propertyInfo}>
@@ -222,9 +241,16 @@ export default function Dashboard({onCreateNewListing, onLoadListing}:IDashboard
                             </div>
                             <div className={styles.propertyInfoIcon}>
                                 <FaCartPlus />
+                                <button onClick={() => {
+                                    onRedirectHandler(property)
+                                }}><FaEdit /></button>
                             </div>
                         </div>
-                    </div>)): 'Please add your new listing'}
+                    </div>)) :
+                        <div className={styles.loadingScreen}>
+                            <Loader />
+                        </div>
+                    }
                 </div>
                 <ModalDialog
                     title='Add property listing'
@@ -232,7 +258,7 @@ export default function Dashboard({onCreateNewListing, onLoadListing}:IDashboard
                     isModalOpen={openCreateListingModal}
                     enableCloseIcon={true}
                     onIconClose={handleIconCloseCreateListing} >
-                    <ListingForm isSuccess={isCreationSuccess} isLoading={createNewListingLoading} onAddNewListing={onAddNewListing} handleIconCloseCreateListing={handleIconCloseCreateListing}/>
+                    <ListingForm isSuccess={isCreationSuccess} isLoading={createNewListingLoading} onAddNewListing={onAddNewListing} handleIconCloseCreateListing={handleIconCloseCreateListing} />
                 </ModalDialog>
             </div>
 

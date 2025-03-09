@@ -1,20 +1,19 @@
-"use client"
-
 import React from 'react';
-import AdminLayout from '../components/adminLayout/AdminLayout';
+import styles from './page.module.css'
 import { UserProvider } from '@/app/context/UserContext';
 import { TanentProvider } from '@/app/context/TanentContext';
-import Dashboard from '@/app/components/dashboard/Dashboard';
+import AdminLayout from '@/app/components/adminLayout/AdminLayout';
 import { PropertyProvider } from '@/app/context/PropertyContext';
+import ViewProperty from '@/app/components/viewProperty/ViewProperty';
 
-export default function TenantAdmin() {
-
+export default async function PropertyDetails({ params }: { params: Promise<{ propertyId: string }> }) {
+  const { propertyId } = await params;
   return (
     <UserProvider>
       <TanentProvider>
         <AdminLayout>
           <PropertyProvider>
-            <Dashboard />
+          {propertyId && <ViewProperty propertyId={propertyId} />}
           </PropertyProvider>
         </AdminLayout>
       </TanentProvider>

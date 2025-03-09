@@ -4,7 +4,8 @@ import styles from './Login.module.css'
 import Loader from '../Loader';
 import { validateEmail } from '@/app/utils/validateInputs';
 import { useCurrentUser } from '@/app/context/UserContext';
-import { redirectPage } from '@/app/actions/login';
+import { redirectPage, userLogin } from '@/app/actions/login';
+import { ILogin } from '@/app/models';
 
 export interface IUser {
     username: string;
@@ -17,7 +18,7 @@ interface IForm {
 }
 
 
-export default function Login({ onSubmitHandler }: IForm) {
+export default function Login() {
     const [form, setForm] = useState({ username: '', password: '', rememberMe: false })
     const [error, setError] = useState({ usernameError: '', passwordError: '' })
     const [isloading, setIsLoading] = useState(false)
@@ -34,6 +35,11 @@ export default function Login({ onSubmitHandler }: IForm) {
         }
     }, [loginResult, currentUser])
 
+    const onSubmitHandler = async (user: IUser): Promise<any> => {
+        const { username, password } = user;
+        return userLogin({ email: username, password } as ILogin);
+    }
+ 
 
     const signInHandler = (evt: any) => {
         evt.preventDefault();
