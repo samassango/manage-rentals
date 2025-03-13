@@ -42,13 +42,10 @@ export const UserProvider = ({ children }: any) => {
                     })
                 }
             }
-            //  else {
-            //     redirectPage('/login')
-            // }
         }
             
     }, [user])
-    console.log({currentUser, user})
+    // console.log({currentUser, user})
     return (
         <UserContext.Provider value={{ user, onSuccessHandler, currentUser }}>
             {children}

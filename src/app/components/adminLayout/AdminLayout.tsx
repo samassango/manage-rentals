@@ -10,8 +10,9 @@ import SideBar from '../sideBar/SiderBar';
 import ModalDialog from '../modal/ModalDialog';
 import Profile from '../profile/Profile';
 import Nofications from '../notification/Notification';
+import withAuth from '../withAuth/withAuth';
 
-export default function AdminLayout({ children }: IAdminLayout) {
+export default withAuth(function AdminLayout({ children }: IAdminLayout) {
     const [openProfileModal, setOpenProfileModal] = useState(false)
     const [openNotificationModal, setOpenNotificationModal] = useState(false)
     const [onMenuOpen, setOnMenuOpen] = useState(false)
@@ -56,5 +57,5 @@ export default function AdminLayout({ children }: IAdminLayout) {
             </div>
         </div>
     );
-}
+})
 

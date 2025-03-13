@@ -70,8 +70,8 @@ export async function  getPropertiesByTenantId(tenantId:string, token: string) {
 }
 
 export async function getPropertyById(propertyId: string, token: string) {
-    try {
-        console.log({propertyId, token})
+    // try {
+        // console.log({propertyId, token})
         let url = getFullUrl(BASE_URL.getPropertyId,{propertyId})
         const propertiesResponse = await fetch(url, {
             method: 'GET',
@@ -86,7 +86,7 @@ export async function getPropertyById(propertyId: string, token: string) {
         }
         console.log({propertiesResponse})
         return await propertiesResponse.json()
-    } catch (error) {
-        return error;
-    }
+    // } catch (error) {
+    //     return error;
+    // }
 }

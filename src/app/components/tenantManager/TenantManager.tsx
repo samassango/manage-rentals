@@ -8,15 +8,12 @@ import CreateTenant, { ITenant } from '../createTenant/CreateTenant';
 import Loader from '../Loader';
 import { createTanent } from '@/app/actions/createTanent';
 import { ITenantDetails } from '@/app/models';
+import withAuth from '../withAuth/withAuth';
 
-export default function TenantManager() {
+function TenantManager() {
     const [isCreateNewTenant, setIsCreateNewTenant] = useState(false)
     const [isLoading, setIsLoading] = useState(false)
     const { currentTanent, tanents,  updateSeletedTenant} = useTanentContext()
-
-    useEffect(()=>{
-        
-    },[])
     
     const isLoadingFn = () => {
         setIsLoading(true)
@@ -25,7 +22,7 @@ export default function TenantManager() {
     const onCreateTenant = (data: ITenantDetails, token: string) => {
         return createTanent(data, token)
     }
-   console.log({tanents, currentTanent})
+   
     if (!isCreateNewTenant && currentTanent && currentTanent.id) {
         const handleContinueLogin = () => {
             setIsLoading(true)
@@ -52,7 +49,6 @@ export default function TenantManager() {
                                 <option key={data.id} value={data.id}>{data.tenantName}</option>))
                             }
                         </select>
-                        {/* <span>{currentTanent.tenantName}</span> */}
                     </div>
                     <div className={styles.actionsContainer}>
                         <button className={styles.newTenant} onClick={handleCreateTent}>Create New Tenant</button>
@@ -72,3 +68,4 @@ export default function TenantManager() {
         </div>
     )
 }
+export default withAuth(TenantManager)

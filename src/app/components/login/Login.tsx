@@ -1,3 +1,4 @@
+'use client'
 import React, { useEffect, useState } from 'react'
 import PropTypes from 'prop-types'
 import styles from './Login.module.css'
@@ -6,6 +7,8 @@ import { validateEmail } from '@/app/utils/validateInputs';
 import { useCurrentUser } from '@/app/context/UserContext';
 import { redirectPage, userLogin } from '@/app/actions/login';
 import { ILogin } from '@/app/models';
+import { MdAlternateEmail } from 'react-icons/md';
+import { FaLock } from 'react-icons/fa';
 
 export interface IUser {
     username: string;
@@ -30,23 +33,23 @@ export default function Login() {
         if (loginResult) {
             onSuccessHandler(loginResult)
         }
-        if(currentUser && Object.keys(currentUser).length>0){
+        if (currentUser && Object.keys(currentUser).length > 0) {
             redirectPage('/tenant')
         }
     }, [loginResult, currentUser])
 
     const onSubmitHandler = async (user: IUser): Promise<any> => {
         const { username, password } = user;
-        return userLogin({ email: username, password } as ILogin);
+        return userLogin({ email: username.toString(), password: password.toString() } as ILogin);
     }
- 
+
 
     const signInHandler = (evt: any) => {
         evt.preventDefault();
         setIsLoading(true);
         if (validateForm()) {
             onSubmitHandler(form).then(response => {
-                console.log({response})
+                console.log({ response })
                 setLoginResult(response)
             })
             setIsLoading(false);
@@ -91,41 +94,48 @@ export default function Login() {
                 </div>
             }
             <div className={styles.inputContainer}>
-                <label htmlFor="username">Username:</label>
-                <input type="text"
-                    name='username'
-                    className={error.usernameError ? styles.inputError : ''}
-                    value={form.username}
-                    onChange={(e: any) => {
-                        setForm({
-                            ...form,
-                            username: e.target.value.trim()
-                        })
-                        setError({
-                            ...error,
-                            usernameError: ''
-                        })
-                    }} />
+                <label htmlFor="username">Username / Email</label>
+                <div className={styles.input}>
+                    <MdAlternateEmail />
+                    <input type="text"
+                        name='username'
+                        className={error.usernameError ? styles.inputError : ''}
+                        value={form.username}
+                        onChange={(e: any) => {
+                            setForm({
+                                ...form,
+                                username: e.target.value.trim()
+                            })
+                            setError({
+                                ...error,
+                                usernameError: ''
+                            })
+                        }} />
+                </div>
+
                 {error.usernameError &&
                     <label className={styles.error} htmlFor="usernameError">{error.usernameError}</label>
                 }
             </div>
             <div className={styles.inputContainer}>
-                <label htmlFor="username">Password:</label>
-                <input type="password"
-                    name='password'
-                    className={error.passwordError ? styles.inputError : ''}
-                    value={form.password}
-                    onChange={(e: any) => {
-                        setForm({
-                            ...form,
-                            password: e.target.value
-                        })
-                        setError({
-                            ...error,
-                            passwordError: ''
-                        })
-                    }} />
+                <label htmlFor="username">Password</label>
+                <div className={styles.input}>
+                    <FaLock />
+                    <input type="password"
+                        name='password'
+                        className={error.passwordError ? styles.inputError : ''}
+                        value={form.password}
+                        onChange={(e: any) => {
+                            setForm({
+                                ...form,
+                                password: e.target.value
+                            })
+                            setError({
+                                ...error,
+                                passwordError: ''
+                            })
+                        }} />
+                </div>
                 {error.passwordError &&
                     <label className={styles.error} htmlFor="passwordError">{error.passwordError}</label>
                 }

@@ -1,6 +1,7 @@
 import { create } from 'zustand'
 import { combine } from 'zustand/middleware'
 import { persist } from 'zustand/middleware'
+import { deleteSession } from '../lib/session'
 
 const initialState ={
     user: null,
@@ -84,7 +85,7 @@ const useUserStore = create(
                     }))
                 },
                 reset: () => {
-                    set({})
+                    set(initialState)
                 },
             }
         },

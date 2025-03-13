@@ -13,6 +13,7 @@ import { FaLocationDot } from 'react-icons/fa6';
 import Loader from '../Loader';
 import { getUserById } from '@/app/actions/currentUser';
 import PropertyImages from '../PropertyImages/PropertyImages';
+import withAuth from '../withAuth/withAuth';
 
 interface IUser {
     realm: string;
@@ -45,7 +46,9 @@ export default function ViewProperty({ propertyId }: { propertyId: string }) {
     useEffect(() => {
         const token = user?.token || ''
         const userId = property?.propertyOwnerId || ''
-        onLoadUserById(userId.toString(), token.toString())
+        if(token && userId){
+             onLoadUserById(userId.toString(), token.toString())
+        }
     }, [property])
 
 

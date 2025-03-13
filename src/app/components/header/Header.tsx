@@ -5,8 +5,8 @@ import { FaSearch, FaUser } from 'react-icons/fa';
 import { IoNotifications } from 'react-icons/io5';
 import { LuLogOut } from 'react-icons/lu';
 import useUserStore from '@/app/store/store';
-import { redirect } from 'next/navigation';
 import { useCurrentUser } from '@/app/context/UserContext';
+import { redirectPage } from '@/app/actions/login';
 interface IHeader {
     openUserProfile: () => void;
     openNotification: () => void;
@@ -34,10 +34,9 @@ export default function Header({ openUserProfile, openNotification, onMenuHandle
         evt.preventDefault();
         openNotification()
     }
-    const handleLogout =()=>{
-        reset()
-        localStorage.removeItem('currentUser')
-        redirect('/login')
+    const handleLogout  = async()=>{
+        reset();
+       await redirectPage('/logout')
     }
 
     return (

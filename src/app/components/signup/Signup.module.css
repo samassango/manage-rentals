@@ -11,6 +11,10 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    background: rgba(100, 98, 98, 0.774);
+    margin: -10px -10px 0 -10px ;
+    padding: .5rem;
+    border-radius: 5px 5px 0px 0px;
 }
 .loginTitle h1{
     font-weight: 900;
@@ -30,7 +34,21 @@
     margin: 10px 0;
 }
 
+.input{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: rgba(133, 130, 130, 0.616);
+}
+
+.input svg {
+    font-size: 1.5rem;
+    margin: .5rem;
+}
+
+
 .inputContainer input {
+    margin: 5px;
     padding: 10px;
     height: 40px;
     max-width: 450px;
@@ -65,11 +83,11 @@
 }
 
 .submitContainer button {
-    margin: 10px;
-    padding: 10px;
-    height: 50px;
+    margin: .7rem;
+    padding: .5rem;
+    height: 40px;
     max-width: 150px;
-    font-size: 24px;
+    font-size: 16px;
     font-weight: 600;
     width: 100%;
     border: 1px solid #d1d1e0;

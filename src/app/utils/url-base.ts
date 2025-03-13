@@ -2,6 +2,7 @@
 const host = 'http://127.0.0.1:3001'
 export const BASE_URL = {
     login: `${host}/users/login`,
+    verifyToken: `${host}/verifyToken`,
     signUp: `${host}/signup`,
     currentUser: `${host}/get-current-user`,
     createTanent:`${host}/tenants`,
