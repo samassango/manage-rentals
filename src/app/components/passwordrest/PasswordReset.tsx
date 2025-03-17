@@ -44,7 +44,7 @@ export default function PasswordReset({ onSubmitHandler }: IForm) {
                 </div>
             </div>
             <div className={styles.submitContainer}>
-                <button onClick={onPasswordChangeHandler}>Reset</button>
+                <a href='/login'>Back to Login</a><button onClick={onPasswordChangeHandler}>Reset</button>
             </div>
         </div>
     );

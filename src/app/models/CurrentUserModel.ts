@@ -3,4 +3,6 @@ export default interface ICurrentUser{
     realm: string;
     username: string;
     email: string;
+    userType: string;
+    role: string
 }

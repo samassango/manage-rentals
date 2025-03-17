@@ -18,7 +18,9 @@ export const BASE_URL = {
     getPropertyListingByUser: `${host}/properties/property-owner/:userId/:tenantId`,
     getPropertyListingByTenant: `${host}/properties/property-tenant/:tenantId`,
     getPropertyId: `${host}/properties/:propertyId`,
-    getUserById: `${host}/get-current-user/:userId`
+    getUserById: `${host}/get-current-user/:userId`,
+    getPublicPropertyById: `${host}/properties?filter=`,
+    getTenantById: `${host}/tenants/:tenantId`
 }
 
 export const getFullUrl =(url: string, param:any): string=>{

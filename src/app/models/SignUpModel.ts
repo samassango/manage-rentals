@@ -3,4 +3,6 @@ export default interface ISignUp{
     username: string;
     email: string;
     password: string;
+    userType: string;
+    role: string;
 }

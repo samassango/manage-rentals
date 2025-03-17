@@ -1,3 +1,5 @@
+'use client'
+
 import React, { useState } from 'react';
 import Image from 'next/image'
 import styles from './PropertyImages.module.css'
@@ -19,9 +21,9 @@ export default function PropertyImages({ images }: IPropertyImages) {
             </div>
             <div className={styles.smallImageContainer}>
                 {images.length &&
-                    images.map((image, index) => (<button onClick={() => {
+                    images.map((image, index) => (<button key={'XXXXX__TTTT__EEEEE'+{index}} onClick={() => {
                         handleOnchange(index)
-                    }}><Image src={image} priority={true} alt={''} width="150" height="100" /></button>))
+                    }}><Image  src={image} priority={true} alt={''} width="150" height="100" /></button>))
                 }
             </div>
         </div>

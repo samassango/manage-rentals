@@ -13,8 +13,10 @@ interface IPropertyCard {
 }
 
 export default function PropertyCard({ property }: IPropertyCard) {
+    const url = `/properties/${property.id}`
     return (
         <div className={styles.propertyCard} key={property.propertyAddress + '__id'}>
+            <a href={url}>
             <div className={styles.propertyImage}>
                 <span className={styles.sales}>Sale</span>
                 <Image src={property.propertyImages[0]} priority={true} alt={''} width="300" height="200" />
@@ -43,6 +45,7 @@ export default function PropertyCard({ property }: IPropertyCard) {
                     <FaCartPlus />
                 </div>
             </div>
+            </a>
         </div>
     );
 }

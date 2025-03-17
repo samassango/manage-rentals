@@ -76,6 +76,13 @@
     max-width: 450px;
 }
 
+.submitContainer a{
+    padding: 10px;
+    cursor: pointer;
+    font-weight: 600;
+    line-height: 14px;
+}
+
 .submitContainer button {
     margin: .7rem;
     padding: .5rem;
