@@ -1,0 +1,64 @@
+/* Style for the table container */
+.tableContainer {
+    margin: 5px auto;
+    width: 100%;
+    padding: 1rem;
+    font-family: Arial, sans-serif;
+}
+
+/* Style for the table */
+.userTable {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: left;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.userTable th, .userTable td {
+    border: 1px solid #b2ababcc;
+    padding: 12px;
+}
+
+.userTable th {
+    background-color: #b6b2b2;
+    color: #333;
+    font-weight: bold;
+}
+
+.userTable tr:hover {
+    background-color: #706e6ed2;
+}
+
+/* Style for buttons */
+.viewButton, .deleteButton {
+    padding: 5px 10px;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+.viewButton {
+    background-color: #4CAF50;
+    color: white;
+    margin: 0 .5rem;
+}
+
+.deleteButton {
+    background-color: #f44336;
+    color: white;
+}
+
+.viewButton:hover {
+    background-color: #45a049;
+}
+
+.deleteButton:hover {
+    background-color: #d32f2f;
+}
+
+.action{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}

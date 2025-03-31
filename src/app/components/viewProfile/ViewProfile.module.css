@@ -1,0 +1,59 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    width: 98%;
+    margin: .5rem;
+    padding: .5rem;
+    border-radius: .3rem;
+    background: rgba(128, 128, 128, 0.744);
+    box-shadow: 3px 2px 2px rgba(193, 182, 182, 0.786);
+}
+
+.header {
+    display: flex;
+    height: 12rem;
+    width: 100%;
+    padding: 1rem;
+    background: rgba(179, 174, 174, 0.732);
+    position: relative;
+}
+
+.header img{
+   position: absolute;
+   top: 8rem;
+   left: 3rem;
+}
+
+.headerInfo{
+    top: 13rem;
+    left: 13rem;
+    position: absolute;
+    border-left: .2rem solid rgba(203, 192, 192, 0.778);
+    padding-left: .3rem;
+}
+
+.sections{
+    display: flex;
+    gap: .3rem;
+    padding: .3rem;
+    border: .1rem solid gray;
+}
+
+.content {
+   display: flex;
+   flex-direction: column;
+   width: 100%;
+   padding: 1rem 0;
+   margin-top: 6rem;
+}
+
+.rowItem {
+   display: flex;
+   gap: .5rem;
+   padding: .2rem 0;
+}
+
+.rowItem label{
+    font-size: 1rem;
+    font-weight: 600;
+}
