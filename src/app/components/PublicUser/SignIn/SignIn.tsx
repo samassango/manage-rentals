@@ -1,11 +1,20 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styles from './SignIn.module.css'
 import { Formik, FormikHelpers } from 'formik';
 import { RiLockPasswordFill } from 'react-icons/ri';
 import { FaUser } from 'react-icons/fa';
 import * as Yup from 'yup'
+import MessageModel, { IMessageDialog, MessageType } from '../../messageModel/MessageModel';
+import { redirectPage, userLogin } from '@/app/actions/login';
+import { ILogin } from '@/app/models';
 
-export default function SignIn({ onScreenChange }: { onScreenChange: ({ headerTitle, headerNotes, screen }: { headerTitle: string; headerNotes:string; screen: string }) => any }) {
+export default function SignIn({ onScreenChange }: { onScreenChange: ({ headerTitle, headerNotes, screen }: { headerTitle: string; headerNotes: string; screen: string }) => any }) {
+    const [isOpenModelDialog, setIsOpenModelDialog] = useState(false)
+    const [isClosableDialog, setIsClosableDialog] = useState(false)
+    const [isDialogContinueActive, setIsDialogContinueActive] = useState(false)
+    const [dialogMessageType, setDialogMessageType] = useState(MessageType.INFO)
+    const [dialogMessage, setDialogMessage] = useState('')
+
     const validationSchema = Yup.object({
         email: Yup.string()
             .email('Invalid email format')
@@ -17,23 +26,55 @@ export default function SignIn({ onScreenChange }: { onScreenChange: ({ headerTi
         email: '',
         password: ''
     }
-    const onSubmitHandler = (
+    const onSubmitFormHandler = (
         values: { email: string; password: string; },
         actions: FormikHelpers<{ email: string; password: string; }>
     ) => {
-        setTimeout(() => {
-            alert(JSON.stringify(values, null, 2));
+        const { email, password } = values;
+        userLogin({ email: email.toString(), password: password.toString() } as ILogin).then(res => {
+            if (res.token) {
+                redirectPage('/dashboard')
+            } else {
+                if (res.error) {
+                    const { message } = res.error
+                    showMessageDialog({
+                        message,
+                        isModalOpen: true,
+                        isContainueActive: true,
+                        isClosable: true,
+                        messageType: MessageType.ERROR
+                    })
+                }
+            }
             actions.setSubmitting(false);
-        }, 1000);
+        });
     }
 
     const moveToLoginHandler = (evt: any) => {
         evt.preventDefault()
         onScreenChange({
             headerTitle: 'Sign Up',
-            headerNotes:'Communicate with Property Agent',
+            headerNotes: 'Communicate with Property Agent',
             screen: 'SignUp'
         })
+    }
+
+    const showMessageDialog = (messageDialog: IMessageDialog) => {
+        if (messageDialog.isModalOpen) setIsOpenModelDialog(messageDialog.isModalOpen)
+        if (messageDialog.isClosable) setIsClosableDialog(messageDialog.isClosable)
+        if (messageDialog.isContainueActive) setIsDialogContinueActive(messageDialog.isContainueActive)
+        if (messageDialog.messageType) setDialogMessageType(messageDialog.messageType)
+        if (messageDialog.message) setDialogMessage(messageDialog.message)
+    }
+
+    const onSuccessContinue = (evt: any) => {
+        evt.preventDefault()
+        moveToLoginHandler(evt)
+    }
+
+    const onCloseDialog = (evt: any) => {
+        evt.preventDefault()
+        setIsOpenModelDialog(false)
     }
 
     return (
@@ -45,12 +86,12 @@ export default function SignIn({ onScreenChange }: { onScreenChange: ({ headerTi
             <Formik
                 initialValues={initialValues}
                 validationSchema={validationSchema}
-                onSubmit={onSubmitHandler}
+                onSubmit={onSubmitFormHandler}
             >
                 {props => (
                     <form onSubmit={props.handleSubmit}>
                         <div className={styles.inputContainer}>
-                        <label htmlFor='email'>Username/Email:</label>
+                            <label htmlFor='email'>Username/Email:</label>
                             <div className={styles.inputIconItem}>
                                 <FaUser />
                                 <input
@@ -61,10 +102,10 @@ export default function SignIn({ onScreenChange }: { onScreenChange: ({ headerTi
                                     name="email"
                                 />
                             </div>
-                            {props.errors.email && <div id="feedback">{props.errors.email}</div>}
+                            {props.errors.email && props.touched.email && <div id="feedback">{props.errors.email}</div>}
                         </div>
                         <div className={styles.inputContainer}>
-                        <label htmlFor='password'>Password:</label>
+                            <label htmlFor='password'>Password:</label>
                             <div className={styles.inputIconItem}>
                                 <RiLockPasswordFill />
                                 <input
@@ -75,7 +116,7 @@ export default function SignIn({ onScreenChange }: { onScreenChange: ({ headerTi
                                     name="password"
                                 />
                             </div>
-                            {props.errors.password && <div id="feedback">{props.errors.password}</div>}
+                            {props.errors.password && props.touched.password && <div id="feedback">{props.errors.password}</div>}
                         </div>
                         <div className={styles.actionContainer}>
                             <button type="submit" className={styles.submitButton} disabled={props.isSubmitting}>Login</button>
@@ -84,6 +125,15 @@ export default function SignIn({ onScreenChange }: { onScreenChange: ({ headerTi
                     </form>
                 )}
             </Formik>
+            <MessageModel
+                isModalOpen={isOpenModelDialog}
+                isClosable={isClosableDialog}
+                isContainueActive={isDialogContinueActive}
+                messageType={dialogMessageType}
+                message={dialogMessage}
+                onContinueHandler={onSuccessContinue}
+                onIconClose={onCloseDialog}
+            />
         </div>
     );
 }

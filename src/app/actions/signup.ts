@@ -12,9 +12,11 @@ export async function userSignUp(user: ISignUp) {
             },
             body: JSON.stringify(user)
         });
-
-        if (!userResponse.ok) {
-            throw new Error('Network response was not ok')
+        console.log({userResponse})
+        if(userResponse.status===403){
+            return await userResponse.json()
+        }else if(!userResponse.ok){
+            return await userResponse.json()
         }
 
         return await userResponse.json()

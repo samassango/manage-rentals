@@ -1,0 +1,85 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    gap: .2rem;
+    width: 100%;
+}
+
+.inconProfile {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 1rem;
+}
+
+.inconProfile img {
+    border: .2rem solid #fff;
+    border-radius: 100%;
+}
+
+.profileDetails {
+    display: flex;
+    gap: .5rem;
+    justify-content: center;
+    align-items: center;
+}
+
+.profileDetails label {
+    font-size: 1rem;
+    font-weight: 600;
+    line-height: 1.5rem;
+}
+
+.role {
+    display: flex;
+    gap: .5rem;
+    justify-content: center;
+    align-items: center;
+}
+
+.role label:first-child {
+    font-size: 1rem;
+    font-weight: 600;
+    line-height: 1.5rem;
+}
+
+.sideNavMenu {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.sideNavMenu ul {
+    list-style: none;
+    width: 100%;
+    padding: 1rem 0;
+}
+
+.sideNavMenu ul li {
+    color: #fff;
+    padding: .5rem;
+    background: gray;
+    margin: .5rem;
+}
+
+.sideNavMenu ul li a {
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: 600;
+    width: 100%;
+    display: flex;
+    outline: none;
+}
+
+.sideNavMenu ul li:hover {
+    background: rgba(62, 59, 59, 0.737);
+}
+
+.sideNavMenu svg{
+    font-size: 1.5rem;
+}
+
+.sideNavMenu span{
+    margin-top: .3rem;
+    padding: 0 .5rem;
+}

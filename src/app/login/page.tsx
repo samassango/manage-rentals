@@ -1,11 +1,8 @@
 "use client"
 
 import styles from "./page.module.css";
-import LoginForm, { IUser } from '../components/login/Login'
-import React, { useEffect } from 'react';
-import { redirect } from 'next/navigation'
-import { userLogin } from "../actions/login";
-import { ILogin } from "../models";
+import LoginForm from '../components/login/Login'
+import React from 'react';
 import { UserProvider } from "../context/UserContext";
 
 export default function Login() {
